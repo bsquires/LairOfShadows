@@ -20,27 +20,11 @@ public class AI {
 			//fighting loops until someone runs out of life
 			fight.fighting();
 			break;
-		/*	
 		case 2:
-			System.out.println("Enemy Attacks!");
-			break;
-		case 3:
-			System.out.println("Enemy Defends!");
-			break;
-		case 4:
-			System.out.println("Enemy Uses Special Attack!");
-			break;
-		case 5:
-			System.out.println("Your Attack Is Succesful!");
-			break;
-		case 6:
-			System.out.println("Your Attack Is Unsuccesful!");
-			break;
-			*/
-		case 7:
 			System.out.println("Random Item Is Found!");
 			break;
 		default:
+			System.out.println("Catostraphic Disaster!!!!!!!");
 			break;
 		}
 	}
