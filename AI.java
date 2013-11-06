@@ -1,7 +1,16 @@
+import java.util.Random;
+
 public class AI {
+	//reference to the player character
+	//playing the game
+	Player user;
+	
 	private int randomizer;
 	
-	public AI(){}
+	public AI(Player player1)
+	{
+		this.user = player1;
+	}
 	
 	public void createEvent(){
 		
@@ -14,7 +23,8 @@ public class AI {
 			break;
 		case 1:
 			System.out.println("Enemy Encounter!");
-			Combat fight = new Combat(Player player1);
+			Player bot = createEnemy(user);
+			Combat fight = new Combat(user, bot);
 			//Combat method must instantiate an enemy to fight with
 			//via create enemy
 			//fighting loops until someone runs out of life
@@ -29,22 +39,34 @@ public class AI {
 		}
 	}
 	
-	public void createEnemy(int e, int n){
-		int eN=0;
+	
+	//Create an enemy combatant
+	public Player createEnemy(Player player1){
+		int e = randomize(0, 4);
+		//Generate a random multiple between 25% and 100%
+		int botStatsMultiplier = randomize(25, 75)/100;
+		
+		//The bot stats will be used as the initial stats for our bots
+		//created by the following switch statement.
+		int botHealth = botStatsMultiplier*player1.getHealth();
+		int botDefense = botStatsMultiplier*player1.getDefense();
+		int botAttackForce = botStatsMultiplier*player1.getAttackForce();
 		
 		switch(e){
 		case 0:
 			//create a boss enemy
 			break;
+			
 		case 1:
-			while(eN<n){
 			//create a warrior enemy
-			}
+			//Special Attribute Focus will be a product 1/2 the bots health
+			Warrior bot = new Warrior(botHealth, botAttackForce, botDefense, (int) (botHealth*.5));
+			return bot;
 			break;
+			
 		case 2:
-			while(eN<n){
 				//create a rouge enemy
-				}
+				
 			break;
 		case 3:
 			while(eN<n){
