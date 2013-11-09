@@ -1,5 +1,5 @@
 public class Rogue extends Player {
-	protected int Mana;
+	protected int Agility;
 	
 	public Rogue(){
 		this.Health=110;
