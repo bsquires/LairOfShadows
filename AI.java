@@ -65,7 +65,7 @@ public class AI {
 			break;
 			
 		case 2:
-				//create a rouge enemy
+				//create a rogue enemy
 				
 			break;
 		case 3:
@@ -98,52 +98,5 @@ public class AI {
 		return result;
 	}
 	
-	/*
-	public int randomize(int lb, int i){
-		int rdm=0;
-		Random random= new Random();
-		
-		switch(i){
-		case 4:
-			rdm=random.nextInt(i);
-			while(rdm<lb){
-				rdm=random.nextInt(i);
-			}
-			break;
-		case 6:
-			rdm=random.nextInt(i);
-			while(rdm<lb){
-				rdm=random.nextInt(i);
-			}
-			break;
-		case 8:
-			rdm=random.nextInt(i);
-			while(rdm<lb){
-				rdm=random.nextInt(i);
-			}
-			break;
-		case 10:
-			rdm=random.nextInt(i);
-			while(rdm<lb){
-				rdm=random.nextInt(i);
-			}
-			break;
-		case 12:
-			rdm=random.nextInt(i);
-			while(rdm<lb){
-				rdm=random.nextInt(i);
-			}
-			break;
-		case 20:
-			rdm=random.nextInt(i);
-			while(rdm<lb){
-				rdm=random.nextInt(i);
-			}
-			break;
-		default:
-			break;
-		}
-		return rdm;	
-	}
-	*/
+	
 }
