@@ -15,7 +15,9 @@ public class Combat {
 		int damage = 0;
 		int Run = 0;
 		//continue the fight until someone dies
-		int XP = bot.getHealth * randomizer(20, 30)/100;
+		int XP = bot.getHealth() * randomizer(20, 30)/100;
+		int initialHealth = player1.getHealth();
+		
 		while(player1.getHealth() > 0 && bot.getHealth() > 0)
 		{
 			
@@ -26,7 +28,7 @@ public class Combat {
 				if(attackButton)//attack
 				{
 					System.out.println("You swing your weapon at the enemy...");
-					damage = (player1.getAttackPower * randomizer(50, 100)/100) - (bot.getDefense * randomizer(80, 100)/100);
+					damage = (player1.getAttackPower() * randomizer(50, 100)/100) - (bot.getDefense() * randomizer(80, 100)/100);
 					bot.adjHealth = bot.adjHealth - damage;
 				}
 				
@@ -51,7 +53,7 @@ public class Combat {
 			{
 				//bot action
 				System.out.println("The Enemy swings their weapon at you!")
-				damage = (bot.getAttackPower * randomizer(50, 100)/100) - (player1.getDefense * randomizer(80, 100));
+				damage = (bot.getAttackPower() * randomizer(50, 100)/100) - (player1.getDefense() * randomizer(80, 100));
 				player1.adjHealth = player1.adjHealth - damage;
 			}
 			
@@ -70,6 +72,8 @@ public class Combat {
 				player1.incXP = player1.incXP + XP;
 			}
 		}
+		
+		player1.adjHealth = initialHealth;
 			
 	}
 	public void Run()
