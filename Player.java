@@ -25,7 +25,7 @@ public class Player {
 	public void engage(){System.out.println("You have chosen to Engage the enemy.");}
 	public void basicAttack(){System.out.println("You launch your Basic Attack");}
 	public int getHealth(){return new Integer(Health);}
-	public int getAttackPower(){return new Integer(AttackForce);}
+	public int getAttackForce(){return new Integer(AttackForce);}
 	public int getDefense(){return new Integer(Defense);}
 	public int getXP(){return new Integer(XP);}
 	public int getLevel(){return new Integer(Level);}

@@ -6,7 +6,7 @@ public class Mage extends Player {
 		this.AttackForce=10;
 		this.Defense=20;
 		this.Mana=100; //place holder
-		this.Level=0;
+		this.Level=1;
 		this.XP=0;
 	}
 	
@@ -17,6 +17,15 @@ public class Mage extends Player {
 		Mana=m.Mana;
 		Level=m.Level;
 		XP=m.XP;
+	}
+	
+	//used to create bot with randomly generated values comparable to our player
+	public Mage(int h, int af, int d, int m)
+	{
+		this.Health = h;
+		this.AttackForce = af;
+		this.Defense = d;
+		this.Mana = m;
 	}
 	
 	public void Cast(){

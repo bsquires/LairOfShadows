@@ -14,9 +14,17 @@ public class Rogue extends Player {
 		Health=m.Health;
 		AttackForce=m.AttackForce;
 		Defense=m.Defense;
-		Energy=m.Energy;
+		Agility=m.Agility;
 		Level=m.Level;
 		XP=m.XP;
+	}
+	
+	public Rogue(int h, int af, int d, int a)
+	{
+		this.Health = h;
+		this.AttackForce = af;
+		this.Defense = d;
+		this.Agility = a;
 	}
 	
 	public void CritStrike(){
