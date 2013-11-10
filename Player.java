@@ -6,6 +6,8 @@ public class Player {
 	protected int XP=0;
 	protected int Level=0;
 	protected Weapon playerWeapon;
+	protected int KEYS = 0;
+	protected int PlayerLocation;
 	
 	public Player(){};
 	
@@ -20,6 +22,7 @@ public class Player {
 	public void adjAttackForce(int a){this.AttackForce+=a;}
 	public void adjDefense(int d){this.Defense+=d;}
 	public void incXP(int exp){this.XP+=exp;}
+	
 	//This method needs to be expanded upon
 	public void incLevel(int lvl){this.Level=this.XP/(100);}
 	public void engage(){System.out.println("You have chosen to Engage the enemy.");}
@@ -29,6 +32,12 @@ public class Player {
 	public int getDefense(){return new Integer(Defense);}
 	public int getXP(){return new Integer(XP);}
 	public int getLevel(){return new Integer(Level);}
+	
+	public double getLocation(){return new Double(PlayerLocation)}//Determines Player location
+	//to keep them from moving out of a certain location until they obtain their KEY
+	public void adjLocation(double l){this.PlayerLocation;}//Allows the player to change
+	//where they are located in the game
+	
 	public void addWeapon(Weapon x){
 		playerWeapon=new Weapon(x);
 		Health+=x.gethealthStat();

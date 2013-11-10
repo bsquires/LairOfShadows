@@ -1,0 +1,55 @@
+//Main Menu
+	//Quit Game
+	//Start Game
+		//Introduction
+			//Big Location
+				//Desert
+					//Mountain
+					//Dunes
+					//Canyon
+				//Forest
+					//Open Clearing
+					//Dark Forest
+					//Cliff
+				//Lake
+					//Penninsula
+					//Dock
+					//Beach
+			//Encounters
+				//Combat
+					//Player Attack
+					//Player Special 1
+					//Player Special 2
+					//Player Run
+					//AI Attack
+					//Gain XP
+				//Meet Farmer
+					//increase Health
+				//Meet Troll
+					//decreases AttackPower
+				//Find Health Potion
+					//increase Health
+				//Meet Armorer
+					//increase AttackPower
+				//Find Mushrooms
+					//decrease Defense
+				//Meet Shieldmaker
+					//increase Defense
+				//Meet Faerie
+					//increase Health
+				//Satyr throws a rock at you
+					//decrease Health
+			//Boss
+				//1st Boss
+					//Level 2
+					//Obtain Key to leave Big Location
+				//2nd Boss
+					//Level 3
+					//Obtain Key to Leave Big Location
+				//3rd Boss
+					//Level 4
+					//Obtain Key to Leave Big Location
+				//Final Boss
+					//Level 5
+					//Obtain Key to Win the Game
+							
