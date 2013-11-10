@@ -3,18 +3,18 @@
 	//Start Game
 		//Introduction
 			//Big Location
-				//Desert
-					//Mountain
-					//Dunes
-					//Canyon
-				//Forest
-					//Open Clearing
-					//Dark Forest
-					//Cliff
-				//Lake
-					//Penninsula
-					//Dock
-					//Beach
+				//Desert (1.0)
+					//Mountain (1.1)
+					//Dunes (1.2)
+					//Canyon (1.3)
+				//Forest (2.0)
+					//Open Clearing (2.1)
+					//Dark Forest (2.2)
+					//Cliff (2.3)
+				//Lake (3.0)
+					//Penninsula (3.1)
+					//Dock (3.2)
+					//Beach (3.3)
 			//Encounters
 				//Combat
 					//Player Attack
