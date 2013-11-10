@@ -11,6 +11,7 @@ public class AI {
 		this.user = player1;
 	}
 	
+	
 	public void createEvent(){
 		
 		int rdm=randomize(0, 3);
@@ -57,37 +58,37 @@ public class AI {
 		{
 		case 0:
 			System.out.println("You met a farmer who would like you to stay for Dinner.");
-			player1.adjHealth( (int) (player1.getHealth()*.10));
+			player1.adjHealth( (int) (player1.getHealth()*.05));
 			break;
 		case 1:
 			System.out.println("A troll snuck into your camp over night and blunted!"
 					+ "\nyour weapon");
-			player1.adjAttackForce((int) (player1.getAttackForce()*.5)*-1);
+			player1.adjAttackForce((int) (player1.getAttackForce()*.05)*-1);
 			break;
 		case 2:
 			System.out.println("You found a health potion hidden behind a rock");
-			player1.adjHealth( (int) (player1.getHealth()*.25));
+			player1.adjHealth( (int) (player1.getHealth()*.10));
 			break;
 		case 3:
 			System.out.println("A local armorer has heard tales of your struggle"
 					+ "\nand wants to help. He fine tunes your weapon!");
-			player1.adjAttackForce((int) (player1.getAttackForce()*.10));
+			player1.adjAttackForce((int) (player1.getAttackForce()*.03));
 			break;
 		case 4:
 			System.out.println("You find and eat some bad mushrooms."
 					+ "\nYou fall and ill and your Defense falls as a result");
-			player1.adjDefense((int) (player1.getDefense()*.5)*-1);
+			player1.adjDefense((int) (player1.getDefense()*.05)*-1);
 			break;
 		case 5:
 			System.out.println("Ralph the shield maker upgrades your defensive"
 					+ "\nequipment in exchange for pint of local ale!");
-			player1.adjDefense((int) (player1.getDefense()*.5));
+			player1.adjDefense((int) (player1.getDefense()*.05));
 			break;
 		case 6: System.out.println("A fairy appears out of nowhere and heals your wounds!");
-			player1.adjHealth( (int) (player1.getHealth()*.25));
+			player1.adjHealth( (int) (player1.getHealth()*.025));
 			break;
 		case 7: System.out.println("A satyr at play throws a rock at your head while you sleep! Ouch!");
-			player1.adjHealth( (int) (player1.getHealth()*.5)*-1);
+			player1.adjHealth( (int) (player1.getHealth()*.05)*-1);
 			break;
 		default:
 			System.out.println("Your random encounter code is broken");
@@ -131,6 +132,30 @@ public class AI {
 			return player1;
 			
 		}
+	}
+	
+	public void bossFight()
+	{
+		//Create a boss bot that is a mirror of the player
+		int botHealth = user.getHealth();
+		int botDefense = user.getDefense();
+		int botAttackForce = user.getAttackForce();
+		Player bossBot = new Player(botHealth, botAttackForce, botDefense, 0);
+		//The boss and the player fight until one are dead
+		Combat fight = new Combat(user, bossBot);
+		fight.fighting();
+	}
+	
+	public void FinalbossFight()
+	{
+		//Create a boss bot that is a mirror of the player
+		int botHealth = (int) (user.getHealth()*1.1);
+		int botDefense = (int) (user.getDefense()*1.1);
+		int botAttackForce = (int) (user.getAttackForce()*1.1);
+		Player bossBot = new Player(botHealth, botAttackForce, botDefense, 0);
+		//The boss and the player fight until one are dead
+		Combat fight = new Combat(user, bossBot);
+		fight.fighting();
 	}
 	
 	//Generate a number between lower bound lb
