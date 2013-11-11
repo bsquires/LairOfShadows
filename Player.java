@@ -6,8 +6,8 @@ public class Player {
 	protected int XP=0;
 	protected int Level=0;
 	protected Weapon playerWeapon;
-	protected int KEYS = 0;
-	protected int PlayerLocation;
+	
+	protected boolean ranAway = false;
 	
 	public Player(){};
 	
@@ -18,31 +18,38 @@ public class Player {
 		this.Defense=d;
 		this.Level=lvl;
 	}
+	
+	//Set methods to adjust player stats
 	public void adjHealth(int h){this.Health+=h;}
 	public void adjAttackForce(int a){this.AttackForce+=a;}
 	public void adjDefense(int d){this.Defense+=d;}
 	public void incXP(int exp){this.XP+=exp;}
+	public void adjRanAway(boolean bool){this.ranAway = bool;};
 	
-	//This method needs to be expanded upon
+	public void setHealth(int h){this.Health = h;}
+	public void setAttackForce(int a){this.AttackForce = a;}
+	public void setDefense(int d){this.Defense = d;}
+	
+	//Look more into this
 	public void incLevel(int lvl){this.Level=this.XP/(100);}
+	
+	/*unnecessary methods given the form of combat
 	public void engage(){System.out.println("You have chosen to Engage the enemy.");}
-	public void basicAttack(){System.out.println("You launch your Basic Attack");}
+	*/
+	public void basicAttack(){System.out.println("You strike the enemy with your weapon!");}
+	public void runAway(){System.out.println("You escaped, but you did not gain any experience!");}
 	public int getHealth(){return new Integer(Health);}
 	public int getAttackForce(){return new Integer(AttackForce);}
 	public int getDefense(){return new Integer(Defense);}
 	public int getXP(){return new Integer(XP);}
 	public int getLevel(){return new Integer(Level);}
-	
-	public double getLocation(){return new Double(PlayerLocation)}//Determines Player location
-	//to keep them from moving out of a certain location until they obtain their KEY
-	public void adjLocation(double l){this.PlayerLocation;}//Allows the player to change
-	//where they are located in the game
-	
+	public boolean getRanAway(){return this.ranAway;}
+
 	public void addWeapon(Weapon x){
 		playerWeapon=new Weapon(x);
-		Health+=x.gethealthStat();
-		AttackForce+=x.getafStat();
-		Defense+=x.getdefenseStat();
+		this.Health+=x.gethealthStat();
+		this.AttackForce+=x.getafStat();
+		this.Defense+=x.getdefenseStat();
 	}
 	public void removeWeapon(Weapon x){
 	playerWeapon=null;
@@ -50,4 +57,66 @@ public class Player {
 	AttackForce-=x.getafStat();
 	Defense-=x.getdefenseStat();
 	}
+	
+	public void checkLevel()
+	{
+		Level = this.getLevel();
+		XP = this.getXP();
+		
+		/*
+		 * Player attributes will be increased by 25% at each level
+		 * To increase to a higher level, a player must increase his xp
+		 * by 25% of what his current special attribute is
+		 */
+		
+		switch(Level){
+		case 1:
+			if(XP>25)
+			{
+				System.out.println("Congratulations you have leveled up to Level 2!");
+				this.Level = 2;
+			}
+			break;
+			
+		case 2:
+			if(XP>56)
+			{
+				System.out.println("Congratulations you have leveled up to Level 3!");
+				this.Level = 3;
+			}
+			break;
+		case 3:
+			if(XP>95)
+			{
+				System.out.println("Congratulations you have leveled up to Level 4!");
+				this.Level = 4;
+			}
+		case 4:
+			if(XP>143)
+			{
+				System.out.println("Congratulations you have leveled up to Level 4!");
+				this.Level = 5;
+			}
+			break;
+		case 5:
+			if(XP>203)
+			{
+				System.out.println("Congratulations you have leveled up to Level 4!");
+				this.Level = 6;
+			}
+			break;
+		case 6:
+			if(XP>278)
+			{
+				System.out.println("Congratulations you have leveled up to Level 4!");
+				this.Level = 7;
+			}
+			break;
+			
+			default:
+				System.out.println("Your code is broken at player CheckLevel");
+				break;
+
+		}
+	}//endchecLevel
 }

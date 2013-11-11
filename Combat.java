@@ -2,97 +2,166 @@
 public class Combat {
 	Player player1;
 	Player bot;
+	String class_type = "";
+	String bot_class_type = "";
 	
 	public Combat(Player player1, Player bot)
 	{
 		this.player1 = player1;
 		this.bot = bot;
+		
+		//determine the player class
+		if(player1 instanceof Rogue){class_type = "rogue";}
+		if(player1 instanceof Warrior){class_type = "warrior";}
+		if(player1 instanceof Mage){class_type = "mage";}
+		
+		if(bot instanceof Rogue){bot_class_type = "rogue";}
+		if(bot instanceof Warrior){bot_class_type = "warrior";}
+		if(bot instanceof Mage){bot_class_type = "mage";}
 	}
 	
 	public void fighting()
 	{
 		int actionCount = 0;
-		int damage = 0;
-		int Run = 0;
-		//continue the fight until someone dies
-		int XP = bot.getHealth() * randomizer(20, 30)/100;
-		int initialHealth = player1.getHealth();
 		
-		while(player1.getHealth() > 0 && bot.getHealth() > 0)
+		//Start the fight
+		int initialHealth = player1.getHealth();
+		int initialDefense = player1.getDefense();
+		int initialAF = player1.getAttackForce();
+		//get the class unique special attribute
+		int initialSpecial = 0;
+			switch(class_type)
+			{
+			case "rogue":
+				initialSpecial = ((Rogue) player1).getAgility();
+				break;
+				
+			case "warrior":
+				initialSpecial = ((Warrior) player1).getFocus();
+				break;
+				
+			case "mage":
+				initialSpecial = ((Mage) player1).getMana();
+				break;
+			}//end switch
+			
+			int XP = initialSpecial * Randomizer.randomize(1, 5)/100;
+		
+		
+		//Continue the fight until someone dies
+		while((player1.getHealth() > 0 && bot.getHealth() > 0) && player1.ranAway == false)
 		{
 			
 			if(actionCount%2==0)
 			{
 				//player1 action
 					//attack
-				if(attackButton)//attack
+				System.out.println("YOUR TURN!");
+				switch(class_type)
 				{
-					System.out.println("You swing your weapon at the enemy...");
-					damage = (player1.getAttackPower() * randomizer(50, 100)/100) - (bot.getDefense() * randomizer(80, 100)/100);
-					bot.adjHealth = bot.adjHealth - damage;
-				}
-				
-				if else(RunButton)//run button pushed
-				{
-					System.out.println("You turn tail and run!");
-					Run ++;
-				}
-				
-				if else (Special 1)
-				{
+				case "rogue":
+					((Rogue) player1).rogueFightMenu(bot, false);
+					break;
 					
-				}
-				
-				if else (Special 2)
-				{
+				case "warrior":
+					((Warrior) player1).warriorFightMenu(bot, false);
+					break;
 					
-				}
-				
+				case "mage":
+					((Mage) player1).mageFightMenu(bot, false);
+					break;
+				}//end switch
+
 			}
 			else 
 			{
 				//bot action
-				System.out.println("The Enemy swings their weapon at you!")
-				damage = (bot.getAttackPower() * randomizer(50, 100)/100) - (player1.getDefense() * randomizer(80, 100));
-				player1.adjHealth = player1.adjHealth - damage;
-			}
+				//player1 action
+				//attack
+				System.out.println("It's the enemy's turn!");
+			switch(bot_class_type)
+			{
+			case "rogue":
+				((Rogue) player1).rogueFightMenu(player1, true);
+				break;
+				
+			case "warrior":
+				((Warrior) player1).warriorFightMenu(player1, true);
+				break;
+				
+			case "mage":
+				((Mage) player1).mageFightMenu(player1, true);
+				break;
+				
+				default:
+				System.out.println("Your code is broken at Combat boss action switch");
+					
+			}//end switch
+			}//end enemy attack else
 			
 			actionCount++;//increments to allow each person to attack on after the other
 			
-		}
+		}//end fight loop
 		
-		if(player1.getHealth == 0)
-		{
-			// go to the main menu
-		}
-		else if(bot.getHealth == 0)
-		{
-			if(Run == 0)
+		/*
+		 * WRITE CODE HERE TO CHECK IF YOUR PLAYER IS DEAD AND TAKE APPROPRIATE ACTION
+		 */
+		
+		
+		//Give the player their stats at the beginning of the fight
+		player1.setHealth(initialHealth);
+		player1.setDefense(initialDefense);
+		player1.setAttackForce(initialAF);
+		
+			switch(class_type)
 			{
-				player1.incXP = player1.incXP + XP;
-			}
+			case "rogue":
+				((Rogue) player1).setAgility(initialSpecial);
+				break;
+				
+			case "warrior":
+				((Warrior) player1).setFocus(initialSpecial);
+				break;
+				
+			case "mage":
+				((Mage) player1).setMana(initialSpecial);
+				break;
+			}//end switch
+		
+		
+		//do not increase the experience if player1 ran away
+		if (player1.getRanAway()==true)
+		{
+			player1.adjRanAway(false);
+			return;
+
 		}
 		
-		player1.adjHealth = initialHealth;
+		//increase the experience level
+		player1.incXP(XP);
+		
+		//Check to see if the player leveled
+		int curLevel = player1.getLevel();
+		player1.checkLevel();
+		if(curLevel<player1.getLevel())
+		{
+			switch(class_type)
+			{
+			case "rogue":
+				((Rogue) player1).levelUp();
+				break;
+				
+			case "warrior":
+				((Warrior) player1).levelUp();
+				break;
+				
+			case "mage":
+				((Mage) player1).levelUp();
+				break;
+			}//end switch
+		}
 			
 	}
-	public void Run()
-	{
-		
-	}
 	
-	public int randomize(int lb, int ub)
-	{
-		Random random = new Random();
-		int result = -1;
-		//loop until you receive a result
-		//that falls within the specified bounds
-		while(result<lb)
-		{
-		result = random.nextInt(ub+1);
-		}
-		
-		return result;
-	}
-
+	
 }

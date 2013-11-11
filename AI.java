@@ -99,7 +99,7 @@ public class AI {
 	}
 	//Create an enemy combatant
 	public Player createEnemy(Player player1){
-		int e = randomize(0, 4);
+		int e = randomize(0, 3);
 		//Generate a random multiple between 25% and 100%
 		int botStatsMultiplier = randomize(25, 75)/100;
 		
@@ -140,19 +140,25 @@ public class AI {
 		int botHealth = user.getHealth();
 		int botDefense = user.getDefense();
 		int botAttackForce = user.getAttackForce();
-		Player bossBot = new Player(botHealth, botAttackForce, botDefense, 0);
+		int bossClass = 0;
+		Player bossBot;
+		if(user.getLevel()%2==0){bossBot = new Rogue(botHealth, botAttackForce, botDefense, botHealth);}
+		else if(user.getLevel()%3==0){bossBot = new Mage(botHealth, botAttackForce, botDefense, botHealth);}
+		else{bossBot = new Warrior(botHealth, botAttackForce, botDefense, botHealth);}
 		//The boss and the player fight until one are dead
+		
 		Combat fight = new Combat(user, bossBot);
 		fight.fighting();
 	}
 	
 	public void FinalbossFight()
 	{
+		
 		//Create a boss bot that is a mirror of the player
 		int botHealth = (int) (user.getHealth()*1.1);
 		int botDefense = (int) (user.getDefense()*1.1);
 		int botAttackForce = (int) (user.getAttackForce()*1.1);
-		Player bossBot = new Player(botHealth, botAttackForce, botDefense, 0);
+		Player bossBot = new Warrior(botHealth, botAttackForce, botDefense, botHealth);
 		//The boss and the player fight until one are dead
 		Combat fight = new Combat(user, bossBot);
 		fight.fighting();
