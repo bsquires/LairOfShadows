@@ -1,4 +1,4 @@
-import java.util.Random;
+
 
 public class AI {
 	//reference to the player character
@@ -14,7 +14,7 @@ public class AI {
 	
 	public void createEvent(){
 		
-		int rdm=randomize(0, 3);
+		int rdm=Randomizer.randomize(0, 3);
 		
 		switch(rdm){
 		case 0:
@@ -42,7 +42,7 @@ public class AI {
 			fight2.fighting();
 			break;
 		case 3:
-			//random encounter
+			//Randomizer.random encounter
 			createRandomEcounter(user);
 		default:
 			System.out.println("Catostraphic Disaster!!!!!!!");
@@ -52,7 +52,7 @@ public class AI {
 	
 	public void createRandomEcounter(Player player1)
 	{
-		int rdm=randomize(0, 3);
+		int rdm=Randomizer.randomize(0, 3);
 		
 		switch(rdm)
 		{
@@ -91,7 +91,7 @@ public class AI {
 			player1.adjHealth( (int) (player1.getHealth()*.05)*-1);
 			break;
 		default:
-			System.out.println("Your random encounter code is broken");
+			System.out.println("Your Randomizer.random encounter code is broken");
 			break;
 			
 			
@@ -99,9 +99,9 @@ public class AI {
 	}
 	//Create an enemy combatant
 	public Player createEnemy(Player player1){
-		int e = randomize(0, 3);
-		//Generate a random multiple between 25% and 100%
-		int botStatsMultiplier = randomize(25, 75)/100;
+		int e = Randomizer.randomize(0, 3);
+		//Generate a Randomizer.random multiple between 25% and 100%
+		int botStatsMultiplier = Randomizer.randomize(25, 75)/100;
 		
 		//The bot stats will be used as the initial stats for our bots
 		//created by the following switch statement.
@@ -164,21 +164,7 @@ public class AI {
 		fight.fighting();
 	}
 	
-	//Generate a number between lower bound lb
-	//and upperbound ub
-	public int randomize(int lb, int ub)
-	{
-		Random random = new Random();
-		int result = -1;
-		//loop until you receive a result
-		//that falls within the specified bounds
-		while(result<lb)
-		{
-		result = random.nextInt(ub+1);
-		}
-		
-		return result;
-	}
+
 	
 	
 }
