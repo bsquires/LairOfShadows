@@ -140,10 +140,9 @@ public class AI {
 		int botHealth = user.getHealth();
 		int botDefense = user.getDefense();
 		int botAttackForce = user.getAttackForce();
-		int bossClass = 0;
 		Player bossBot;
-		if(user.getLevel()%2==0){bossBot = new Rogue(botHealth, botAttackForce, botDefense, botHealth);}
-		else if(user.getLevel()%3==0){bossBot = new Mage(botHealth, botAttackForce, botDefense, botHealth);}
+		if(user.getLevel()%5==0){bossBot = new Rogue(botHealth, botAttackForce, botDefense, botHealth);}
+		else if(user.getLevel()%7==0){bossBot = new Mage(botHealth, botAttackForce, botDefense, botHealth);}
 		else{bossBot = new Warrior(botHealth, botAttackForce, botDefense, botHealth);}
 		//The boss and the player fight until one are dead
 		

@@ -113,6 +113,13 @@ public class Player {
 			}
 			break;
 			
+		case 7:
+			if(XP>372)
+			{
+				System.out.println("Congratulations you have leveled up to Level 4!");
+				this.Level = 7;
+			}
+			
 			default:
 				System.out.println("Your code is broken at player CheckLevel");
 				break;

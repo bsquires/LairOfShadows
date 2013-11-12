@@ -4,7 +4,7 @@ public class Game {
 	public static void main(String[] args) {
 		
 		String player_class = "this";
-		Player player = new Player();
+		Player player = null;
 		char locationChoice =' ';
 		AI Bob_the_AI = new AI(player);
 		int curLevel = 0;
@@ -79,17 +79,17 @@ public class Game {
 			switch(choice)
 			{
 			case 1:
-				player = (Rogue) player;
+				player = new Rogue();
 				player_class = "rogue";
 				classChosen = true;
 				break;
 			case 2:
-				player = (Warrior) player;
+				player = new Warrior();
 				player_class = "warrior";
 				classChosen = true;
 				break;
 			case 3:
-				player = (Mage) player;
+				player = new Mage();
 				player_class = "mage";
 				classChosen = true;
 				break;
