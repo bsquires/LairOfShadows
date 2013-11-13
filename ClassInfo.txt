@@ -1,0 +1,28 @@
+The Warrior a being with a noble hear,
+will help those who can not help themselves,
+and fights for what is right and just.
+The Warrior has high Health.
+THe Warrior has medium Attack Force.
+The Warrior has medium Defense.
+The Warrior has the special stat Focus.
+Focus affects...
+
+The Mage is a weilder of magiks
+The Mage has low Health.
+THe Mage has medium Attack Force.
+The Mage has medium Defense.
+The Mage has the special stat Mana.
+Mana allows the age to cast spells.
+
+The Rogue is an unpredictable individual.
+THe Rogue has average Health.
+THe Rogue has high Attack Force. 
+THe Rogue has high Defense.
+THe Rogue has the special stat Agility.
+Agility allows...
+
+Choose Wisely
+
+Will You Be A:
+
+Warrior   Mage    Rogue
