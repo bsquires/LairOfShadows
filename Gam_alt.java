@@ -1,9 +1,12 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import java.util.*;
 import java.io.*;
+
 import javax.imageio.*;
 
 public class Gam_alt extends JFrame  {
@@ -160,6 +163,84 @@ public class Gam_alt extends JFrame  {
 			gamePlay.setBackground(Color.black);
 			
 			//Insert main game gui here
+			//Text Wall
+			JTextArea gText=new JTextArea("GAME ON!");
+			gText.setFont(new Font("Helevetica", Font.BOLD, 16));
+			gText.setForeground(Color.green);
+			gText.setBackground(Color.black);
+			JScrollPane gWall=new JScrollPane(gText);
+			gWall.setPreferredSize(new Dimension(490, 500));
+			gamePlay.add(gWall, BorderLayout.EAST);
+			
+			JPanel westBlock=new JPanel();
+			westBlock.setLayout(new GridLayout(3, 1 , 4, 4));
+			westBlock.setForeground(Color.green);
+			westBlock.setBackground(Color.black);
+			
+			//Add Images-change using tutorial found
+			//might have to  make a custom panel in order to display the image
+			//keep working to get a better image
+			JPanel iPanel=new JPanel();
+			iPanel.setBackground(Color.BLACK);
+			iPanel.setPreferredSize(new Dimension(200, 300));
+			JLabel iL=new JLabel();
+			Image image=null;
+			try {
+				image = ImageIO.read(new File("sauron.jpg"));
+			} catch (IOException e) {
+				System.out.println("Check the Image SHIT!");
+			}
+			image=image.getScaledInstance(200, 300, 5);
+			iL.setIcon(new ImageIcon(image));
+			iL.setPreferredSize(new Dimension(200, 300));
+			iL.setBackground(Color.BLACK);
+			iPanel.add(iL);
+			westBlock.add(iPanel);
+			
+			//stat stuff
+			JPanel statPanel=new JPanel();
+			statPanel.setForeground(Color.green);
+			statPanel.setBackground(Color.black);
+			
+			JTextArea statText=new JTextArea("Health: "+"Attack Force: "+"Defense: ");
+			statText.setFont(new Font("Helevetica", Font.BOLD, 12));
+			statText.setForeground(Color.green);
+			statText.setBackground(Color.black);
+			statPanel.add(statText);
+			statPanel.setPreferredSize(new Dimension(200, 100));
+			westBlock.add(statPanel);
+			
+			//Button stuff
+			//ActionListener classListener = new classListener();
+			JPanel dirButtonPanel= new JPanel();
+			dirButtonPanel.setLayout(new GridLayout(1, 3, 4, 4));
+			dirButtonPanel.setForeground(Color.green);
+			dirButtonPanel.setBackground(Color.black);
+			JButton dButton = new JButton("Desert");
+			dButton.setFont(new Font("Helevetica", Font.BOLD, 24));
+			dButton.setForeground(Color.green);
+			dButton.setBackground(Color.black);
+			dButton.setHorizontalAlignment(SwingConstants.CENTER);
+			//dButton.addActionListener(Listener);
+			JButton fButton = new JButton("Forest");
+			fButton.setFont(new Font("Helevetica", Font.BOLD, 24));
+			fButton.setForeground(Color.green);
+			fButton.setBackground(Color.black);
+			fButton.setHorizontalAlignment(SwingConstants.CENTER);
+			//fButton.addActionListener(Listener);
+			JButton lButton = new JButton("Lake");
+			lButton.setFont(new Font("Helevetica", Font.BOLD, 24));
+			lButton.setForeground(Color.green);
+			lButton.setBackground(Color.black);
+			lButton.setHorizontalAlignment(SwingConstants.CENTER);
+			//lButton.addActionListener(Listener);
+			dirButtonPanel.add(dButton);
+			dirButtonPanel.add(fButton);
+			dirButtonPanel.add(lButton);
+			dirButtonPanel.setPreferredSize(new Dimension(200, 100));
+			westBlock.add(dirButtonPanel);
+			gamePlay.add(westBlock, BorderLayout.WEST);
+			
 			
 			this.setContentPane(gamePlay);
 			this.validate();
@@ -205,4 +286,5 @@ public class Gam_alt extends JFrame  {
 		            }
 		        }
 		 }
+		 
 }
