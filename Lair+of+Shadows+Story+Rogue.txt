@@ -1,0 +1,47 @@
+You are a Rogue.
+You prefer stealth and dirty tricks in a 
+fight that help you win, no matter what.
+Though you hold no illusions of honor or
+respect for your opponents, you treat each
+with caution. You started off as the
+village thief, picking pockets and stealing
+food to survive. But you had the skills to
+do what you did and still manage to escape.
+This has suited your combat quite well, 
+which you have started to improve after the
+influx of the mysterious invaders to our
+world. Focusing on small weapons that
+don't weigh you down, you strike fast while
+leaving no opening for the enemy to strike
+back. In accordance with your policy of
+staying light, your armor is not of the 
+heavy variety, keeping you safe from only
+glancing blows. Using your natural speed and
+dexterity, you are able to get inside your 
+opponents guard range and striking at their
+most vulnerable places, doing the maximum
+amount of damage you can in as short a time
+as possible.
+
+Your special is Agility.
+This allows you to pull off feats of speed
+and finess that would put to shame even the
+most seasoned of our warriors.
+
+CriticalStrike
+With a snakelike movement, you slide your
+weapon in between the plates of your 
+opponents armor, thrusting your blade
+deep into their body. As you slide away,
+you twist the knife, leaving the largest 
+wound you can achieve using your smaller
+weapon.
+
+Disarm
+Using the techniques you developed in trying
+to evade capture by our village's
+peacekeepers, you target your opponent's
+weapon directly. As they swing at you, you
+slice at their weapon hand, and in one smooth
+movement, you fling their weapon out of 
+their hand using your own.
