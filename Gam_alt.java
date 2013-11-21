@@ -1,10 +1,3 @@
-/*
-Beau try to write character outside of the combat class and
-in a while loop. We can add or change in class in the player classes that lists
-the possible attacks for the class. If it's possible to do this it may be easier for the gui,
-else I will try to figure out what to do.
- */
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -17,18 +10,22 @@ import java.io.*;
 import javax.imageio.*;
 
 public class Gam_alt extends JFrame  {
+	boolean desert=true;
+	boolean forest=true;
+	boolean lake=true;
+	char playerType;
+	boolean playerAlive=true;
+	Image gImage=null;
+	//Player player=null;
 	JPanel InitScreen = new JPanel();
 	JPanel ClassChoiceScreen= new JPanel();
 	JPanel gamePlay=new JPanel();
 	JPanel westBlock=new JPanel();
-	JTextArea gText=new JTextArea("GAME ON!");
+	JPanel iPanel=new JPanel();
+	JLabel iL=new JLabel();
+	JPanel statPanel=new JPanel();
+	JTextArea gText=new JTextArea();
 	FileReader fileReader;
-	boolean desert=true;
-	boolean forest=true;
-	boolean lake=true;
-	//Player player=null;
-	char playerType;
-	
 	
 	public Gam_alt(){
 		this.setTitle("Lair Of Shadows");
@@ -210,43 +207,28 @@ public class Gam_alt extends JFrame  {
 			//Add Images-change using tutorial found
 			//might have to  make a custom panel in order to display the image
 			//keep working to get a better image
-			JPanel iPanel=new JPanel();
 			iPanel.setBackground(Color.BLACK);
 			iPanel.setPreferredSize(new Dimension(200, 300));
-			JLabel iL=new JLabel();
-			Image image=null;
 			try {
-				image = ImageIO.read(new File("sauron.jpg"));
+				gImage = ImageIO.read(new File("sauron.jpg"));
 			} catch (IOException e) {
 				System.out.println("Check the Image SHIT!");
 			}
-			image=image.getScaledInstance(200, 300, 5);
-			iL.setIcon(new ImageIcon(image));
+			gImage=gImage.getScaledInstance(200, 300, 5);
+			iL.setIcon(new ImageIcon(gImage));
 			iL.setPreferredSize(new Dimension(200, 300));
 			iL.setBackground(Color.BLACK);
 			iPanel.add(iL);
 			westBlock.add(iPanel, BorderLayout.NORTH);
 			
 			//stat stuff
-			JPanel statPanel=new JPanel();
 			statPanel.setForeground(Color.green);
 			statPanel.setBackground(Color.black);
 			statPanel.setLayout(new GridLayout(3, 1, 4, 4));
 			
-			JTextArea hText=new JTextArea("Health: ");
-			hText.setFont(new Font("Helevetica", Font.BOLD, 12));
-			hText.setForeground(Color.green);
-			hText.setBackground(Color.black);
-			
-			JTextArea afText=new JTextArea("Attack Force: ");
-			afText.setFont(new Font("Helevetica", Font.BOLD, 12));
-			afText.setForeground(Color.green);
-			afText.setBackground(Color.black);
-			
-			JTextArea dText=new JTextArea("Defense: ");
-			dText.setFont(new Font("Helevetica", Font.BOLD, 12));
-			dText.setForeground(Color.green);
-			dText.setBackground(Color.black);
+			JTextArea hText=new healthText();	
+			JTextArea afText=new attackText();
+			JTextArea dText=new defenseText();
 			
 			statPanel.add(hText);
 			statPanel.add(afText);
@@ -255,36 +237,8 @@ public class Gam_alt extends JFrame  {
 			westBlock.add(statPanel, BorderLayout.CENTER);
 			
 			//Button stuff
-			ActionListener dirListener = new dirListener();
-			JPanel dirButtonPanel= new JPanel();
-			dirButtonPanel.setLayout(new GridLayout(3, 1, 4, 4));
-			dirButtonPanel.setForeground(Color.green);
-			dirButtonPanel.setBackground(Color.black);
+			JPanel dirButtonPanel= new directionPanel(desert, forest, lake);
 			
-			JButton dButton = new JButton("Desert");
-			dButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			dButton.setForeground(Color.green);
-			dButton.setBackground(Color.black);
-			dButton.setHorizontalAlignment(SwingConstants.CENTER);
-			dButton.addActionListener(dirListener);
-			
-			JButton fButton = new JButton("Forest");
-			fButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			fButton.setForeground(Color.green);
-			fButton.setBackground(Color.black);
-			fButton.setHorizontalAlignment(SwingConstants.CENTER);
-			fButton.addActionListener(dirListener);
-			
-			JButton lButton = new JButton("Lake");
-			lButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			lButton.setForeground(Color.green);
-			lButton.setBackground(Color.black);
-			lButton.setHorizontalAlignment(SwingConstants.CENTER);
-			lButton.addActionListener(dirListener);
-			dirButtonPanel.add(dButton);
-			dirButtonPanel.add(fButton);
-			dirButtonPanel.add(lButton);
-			dirButtonPanel.setPreferredSize(new Dimension(200, 100));
 			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
 			gamePlay.add(westBlock, BorderLayout.WEST);
 			gamePlay.setPreferredSize(new Dimension(200, 500));
@@ -402,5 +356,93 @@ public class Gam_alt extends JFrame  {
 		    			//repaint();
 		            }
 		        }
+		 }
+
+		 class directionPanel extends JPanel{
+			 public directionPanel(){}
+			 public directionPanel(boolean d, boolean f, boolean l){
+				 ActionListener dirListener = new dirListener();
+				 this.setLayout(new GridLayout(3, 1, 4, 4));
+				 this.setForeground(Color.green);
+				 this.setBackground(Color.black);
+				 
+				 if(d&f&l){
+						JButton dButton = new JButton("Desert");
+						dButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+						dButton.setForeground(Color.green);
+						dButton.setBackground(Color.black);
+						dButton.setHorizontalAlignment(SwingConstants.CENTER);
+						dButton.addActionListener(dirListener);
+						
+						JButton fButton = new JButton("Forest");
+						fButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+						fButton.setForeground(Color.green);
+						fButton.setBackground(Color.black);
+						fButton.setHorizontalAlignment(SwingConstants.CENTER);
+						fButton.addActionListener(dirListener);
+						
+						JButton lButton = new JButton("Lake");
+						lButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+						lButton.setForeground(Color.green);
+						lButton.setBackground(Color.black);
+						lButton.setHorizontalAlignment(SwingConstants.CENTER);
+						lButton.addActionListener(dirListener);
+						this.add(dButton);
+						this.add(fButton);
+						this.add(lButton);
+						this.setPreferredSize(new Dimension(200, 100));
+				 }
+				 else if(d&f){}
+				 else if(d&l){}
+				 else if(f&l){}
+				 else if(d){}
+				 else if(f){}
+				 else if(l){}
+			 }
+		 }
+		 
+		 class healthText extends JTextArea{
+			 public healthText(){
+				 this.setText("Health: ");
+				 this.setFont(new Font("Helevetica", Font.BOLD, 12));
+				 this.setForeground(Color.green);
+				 this.setBackground(Color.black);
+			 }
+			 public void updateText(){
+				 this.setText("Health: ");
+			 }
+			 public void resetText(){
+				 this.setText("Health: ");
+			 }
+		 }
+
+		 class attackText extends JTextArea{
+			 public attackText(){
+				 this.setText("Attack Force: ");
+				 this.setFont(new Font("Helevetica", Font.BOLD, 12));
+				 this.setForeground(Color.green);
+				 this.setBackground(Color.black);
+			 }
+			 public void updateText(){
+				 this.setText("Attack Force: ");
+			 }
+			 public void resetText(){
+				 this.setText("Attack Force: ");
+			 }
+		 }
+
+		 class defenseText extends JTextArea{
+			 public defenseText(){
+				 this.setText("Defense: ");
+				 this.setFont(new Font("Helevetica", Font.BOLD, 12));
+				 this.setForeground(Color.green);
+				 this.setBackground(Color.black);
+			 }
+			 public void updateText(){
+				 this.setText("Defense: ");
+			 }
+			 public void resetText(){
+				 this.setText("Defense: ");
+			 }
 		 }
 }
