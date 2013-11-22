@@ -1,3 +1,8 @@
+//We might have to find an alternate way of making loops as it freezes the game.
+//we are going to have to loop through the use of the action listeners
+//and creating or modifying panels as the game goes on.
+//Help me out by filling blanks and changing variables/names where necessary
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -15,6 +20,9 @@ public class Gam_alt extends JFrame  {
 	boolean lake=true;
 	char playerType;
 	boolean playerAlive=true;
+	char location;
+	boolean subzone1=true;
+	boolean subzone2=true;
 	Image gImage=null;
 	//Player player=null;
 	JPanel InitScreen = new JPanel();
@@ -24,7 +32,12 @@ public class Gam_alt extends JFrame  {
 	JPanel iPanel=new JPanel();
 	JLabel iL=new JLabel();
 	JPanel statPanel=new JPanel();
+	JPanel dirButtonPanel=null;
+	JTextArea hText=null;
+	JTextArea afText=null;
+	JTextArea dText=null;
 	JTextArea gText=new JTextArea();
+	JScrollPane gWall=null;
 	FileReader fileReader;
 	
 	public Gam_alt(){
@@ -167,7 +180,7 @@ public class Gam_alt extends JFrame  {
 		}
 		
 		public void launchGame(char pT) throws IOException{
-			this.remove(ClassChoiceScreen);
+			this.getContentPane().removeAll();
 			gamePlay.setLayout(new BorderLayout(4, 4));
 			gamePlay.setForeground(Color.green);
 			gamePlay.setBackground(Color.black);
@@ -195,7 +208,7 @@ public class Gam_alt extends JFrame  {
 			gText.setFont(new Font("Helevetica", Font.BOLD, 16));
 			gText.setForeground(Color.green);
 			gText.setBackground(Color.black);
-			JScrollPane gWall=new JScrollPane(gText);
+			gWall=new JScrollPane(gText);
 			gWall.setPreferredSize(new Dimension(490, 500));
 			gamePlay.add(gWall, BorderLayout.EAST);
 			
@@ -203,10 +216,6 @@ public class Gam_alt extends JFrame  {
 			westBlock.setLayout(new BorderLayout(4, 4));
 			westBlock.setForeground(Color.green);
 			westBlock.setBackground(Color.black);
-			
-			//Add Images-change using tutorial found
-			//might have to  make a custom panel in order to display the image
-			//keep working to get a better image
 			iPanel.setBackground(Color.BLACK);
 			iPanel.setPreferredSize(new Dimension(200, 300));
 			try {
@@ -221,14 +230,14 @@ public class Gam_alt extends JFrame  {
 			iPanel.add(iL);
 			westBlock.add(iPanel, BorderLayout.NORTH);
 			
-			//stat stuff
+			//stat panel
 			statPanel.setForeground(Color.green);
 			statPanel.setBackground(Color.black);
 			statPanel.setLayout(new GridLayout(3, 1, 4, 4));
 			
-			JTextArea hText=new healthText();	
-			JTextArea afText=new attackText();
-			JTextArea dText=new defenseText();
+			hText=new healthText();	
+			afText=new attackText();
+			dText=new defenseText();
 			
 			statPanel.add(hText);
 			statPanel.add(afText);
@@ -236,21 +245,31 @@ public class Gam_alt extends JFrame  {
 			statPanel.setPreferredSize(new Dimension(200, 100));
 			westBlock.add(statPanel, BorderLayout.CENTER);
 			
+			
 			//Button stuff
-			JPanel dirButtonPanel= new directionPanel(desert, forest, lake);
+			dirButtonPanel= new directionPanel(desert, forest, lake);
 			
 			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
 			gamePlay.add(westBlock, BorderLayout.WEST);
 			gamePlay.setPreferredSize(new Dimension(200, 500));
 			
 			this.setContentPane(gamePlay);
-			this.validate();
+			this.revalidate();
 			this.repaint();
 			
-			//insert game code here
 			
 		}
 		
+		public void launchEvent(){
+			//The way this is setup it can be specialized or generalized
+			int x=0;
+			if (x==0/*fight*/){
+				
+			}
+			else{
+				//deal with other conditions
+			}
+		}
 		 class initListener implements ActionListener {
 		        public void actionPerformed(ActionEvent event) {
 		            String initChoice = event.getActionCommand(); 
@@ -317,13 +336,14 @@ public class Gam_alt extends JFrame  {
 		    			try {
 							gText.read(fileReader, fOpen.toString());
 						} catch (IOException e) {
-							System.out.println("DIR! ERROE! IO!");
+							System.out.println("DIR! ERROR! IO!");
 						}
-		    			//validate();
-		    			//repaint();
-		            	//change buttons
-		            	//revalidate
-		            	//repaint
+		    			location='d';
+		    			westBlock.remove(dirButtonPanel);
+		    			dirButtonPanel=new subDirection(location, subzone1, subzone2);
+		    			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
+		    			revalidate();
+		    			repaint();
 		            }
 		            else if(cChoice.equals("Forest")){
 		            	File fOpen=new File("Lair+of+Shadows+Story+Forest.txt");
@@ -335,10 +355,14 @@ public class Gam_alt extends JFrame  {
 		    			try {
 							gText.read(fileReader, fOpen.toString());
 						} catch (IOException e) {
-							System.out.println("DIR! ERROE! IO!");
+							System.out.println("DIR! ERROR! IO!");
 						}
-		    			//validate();
-		    			//repaint();
+		    			location='f';
+		    			westBlock.remove(dirButtonPanel);
+		    			dirButtonPanel=new subDirection(location, subzone1, subzone2);
+		    			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
+		    			revalidate();
+		    			repaint();
 		            }
 		            else if(cChoice.equals("Lake")){
 		            	File fOpen=new File("Lair+of+Shadows+Story+Swamp.txt");
@@ -350,16 +374,42 @@ public class Gam_alt extends JFrame  {
 		    			try {
 							gText.read(fileReader, fOpen.toString());
 						} catch (IOException e) {
-							System.out.println("DIR! ERROE! IO!");
+							System.out.println("DIR! ERROR! IO!");
 						}
-		    			//validate();
-		    			//repaint();
+		    			location='l';
+		    			westBlock.remove(dirButtonPanel);
+		    			dirButtonPanel=new subDirection(location, subzone1, subzone2);
+		    			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
+		    			revalidate();
+		    			repaint();
 		            }
 		        }
 		 }
 
+		 class subListener implements ActionListener{
+			 public void actionPerformed(ActionEvent event) {
+		            String cChoice = event.getActionCommand(); 
+		            if (cChoice.equals(" ")) {
+		            	launchEvent();
+		            }
+		            else if(cChoice.equals(" ")){
+		            	launchEvent();
+		            }
+		            else if(cChoice.equals(" ")){
+		            	launchEvent();
+		            }
+		            else if(cChoice.equals(" ")){
+		            	launchEvent();
+		            }
+		            else if(cChoice.equals(" ")){
+		            	launchEvent();
+		            }
+		            else if(cChoice.equals(" ")){
+		            	launchEvent();
+		            }
+		        }
+		 }
 		 class directionPanel extends JPanel{
-			 public directionPanel(){}
 			 public directionPanel(boolean d, boolean f, boolean l){
 				 ActionListener dirListener = new dirListener();
 				 this.setLayout(new GridLayout(3, 1, 4, 4));
@@ -367,38 +417,272 @@ public class Gam_alt extends JFrame  {
 				 this.setBackground(Color.black);
 				 
 				 if(d&f&l){
-						JButton dButton = new JButton("Desert");
-						dButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-						dButton.setForeground(Color.green);
-						dButton.setBackground(Color.black);
-						dButton.setHorizontalAlignment(SwingConstants.CENTER);
-						dButton.addActionListener(dirListener);
-						
-						JButton fButton = new JButton("Forest");
-						fButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-						fButton.setForeground(Color.green);
-						fButton.setBackground(Color.black);
-						fButton.setHorizontalAlignment(SwingConstants.CENTER);
-						fButton.addActionListener(dirListener);
-						
-						JButton lButton = new JButton("Lake");
-						lButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-						lButton.setForeground(Color.green);
-						lButton.setBackground(Color.black);
-						lButton.setHorizontalAlignment(SwingConstants.CENTER);
-						lButton.addActionListener(dirListener);
-						this.add(dButton);
-						this.add(fButton);
-						this.add(lButton);
-						this.setPreferredSize(new Dimension(200, 100));
+					 JButton dButton = new JButton("Desert");
+					 dButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 dButton.setForeground(Color.green);
+					 dButton.setBackground(Color.black);
+					 dButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 dButton.addActionListener(dirListener);
+					 
+					 JButton fButton = new JButton("Forest");
+					 fButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 fButton.setForeground(Color.green);
+					 fButton.setBackground(Color.black);
+					 fButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 fButton.addActionListener(dirListener);
+					 
+					 JButton lButton = new JButton("Lake");
+					 lButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 lButton.setForeground(Color.green);
+					 lButton.setBackground(Color.black);
+					 lButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 lButton.addActionListener(dirListener);
+					 
+					 this.add(dButton);
+					 this.add(fButton);
+					 this.add(lButton);
+					 this.setPreferredSize(new Dimension(200, 100));
 				 }
-				 else if(d&f){}
-				 else if(d&l){}
-				 else if(f&l){}
-				 else if(d){}
-				 else if(f){}
-				 else if(l){}
+				 else if(d&f){
+					 JButton dButton = new JButton("Desert");
+					 dButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 dButton.setForeground(Color.green);
+					 dButton.setBackground(Color.black);
+					 dButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 dButton.addActionListener(dirListener);
+					 
+					 JButton fButton = new JButton("Forest");
+					 fButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 fButton.setForeground(Color.green);
+					 fButton.setBackground(Color.black);
+					 fButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 fButton.addActionListener(dirListener);
+					 
+					 this.add(dButton);
+					 this.add(fButton);
+					 this.setPreferredSize(new Dimension(200, 100));
+				 }
+				 else if(d&l){
+					 JButton dButton = new JButton("Desert");
+					 dButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 dButton.setForeground(Color.green);
+					 dButton.setBackground(Color.black);
+					 dButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 dButton.addActionListener(dirListener);
+					 
+					 JButton lButton = new JButton("Lake");
+					 lButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 lButton.setForeground(Color.green);
+					 lButton.setBackground(Color.black);
+					 lButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 lButton.addActionListener(dirListener);
+					 
+					 this.add(dButton);
+					 this.add(lButton);
+					 this.setPreferredSize(new Dimension(200, 100));
+				 }
+				 else if(f&l){					 
+					 JButton fButton = new JButton("Forest");
+					 fButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 fButton.setForeground(Color.green);
+					 fButton.setBackground(Color.black);
+					 fButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 fButton.addActionListener(dirListener);
+					 
+					 JButton lButton = new JButton("Lake");
+					 lButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 lButton.setForeground(Color.green);
+					 lButton.setBackground(Color.black);
+					 lButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 lButton.addActionListener(dirListener);
+					 
+					 this.add(fButton);
+					 this.add(lButton);
+					 this.setPreferredSize(new Dimension(200, 100));
+				 }
+				 else if(d){
+					 JButton dButton = new JButton("Desert");
+					 dButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 dButton.setForeground(Color.green);
+					 dButton.setBackground(Color.black);
+					 dButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 dButton.addActionListener(dirListener);
+					 this.add(dButton);
+					 this.setPreferredSize(new Dimension(200, 100));
+				 }
+				 else if(f){
+					 JButton fButton = new JButton("Forest");
+					 fButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 fButton.setForeground(Color.green);
+					 fButton.setBackground(Color.black);
+					 fButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 fButton.addActionListener(dirListener);
+					 
+					 this.add(fButton);
+					 this.setPreferredSize(new Dimension(200, 100));
+				 }
+				 else if(l){
+					 JButton lButton = new JButton("Lake");
+					 lButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+					 lButton.setForeground(Color.green);
+					 lButton.setBackground(Color.black);
+					 lButton.setHorizontalAlignment(SwingConstants.CENTER);
+					 lButton.addActionListener(dirListener);
+					 
+					 this.add(lButton);
+					 this.setPreferredSize(new Dimension(200, 100));
+				 }
 			 }
+		 }
+		 
+		 class subDirection extends JPanel{
+			 public subDirection(char zone, boolean sub1, boolean sub2){
+				 ActionListener subListener = new dirListener();
+				 this.setForeground(Color.green);
+				 this.setBackground(Color.black);
+				 switch(zone){
+				 case 'd':
+					 if(sub1&&sub2){
+						 this.setLayout(new GridLayout(2, 1, 4, 4));
+						 JButton s1Button = new JButton("Dune");
+						 s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s1Button.setForeground(Color.green);
+						 s1Button.setBackground(Color.black);
+						 s1Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s1Button.addActionListener(subListener);
+						 
+						 JButton s2Button = new JButton("Valley");
+						 s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s2Button.setForeground(Color.green);
+						 s2Button.setBackground(Color.black);
+						 s2Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s2Button.addActionListener(subListener);
+						 
+						 this.add(s1Button);
+						 this.add(s2Button);
+						 this.setPreferredSize(new Dimension(200, 100));
+					 }
+					 else if(sub1){
+						 this.setLayout(new GridLayout(1, 1, 4, 4));
+						 JButton s1Button = new JButton("");
+						 s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s1Button.setForeground(Color.green);
+						 s1Button.setBackground(Color.black);
+						 s1Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s1Button.addActionListener(subListener);
+						 
+						 this.add(s1Button);
+						 this.setPreferredSize(new Dimension(200, 100));
+					 }
+					 else if(sub2){
+						 this.setLayout(new GridLayout(1, 1, 4, 4));
+						 JButton s2Button = new JButton("");
+						 s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s2Button.setForeground(Color.green);
+						 s2Button.setBackground(Color.black);
+						 s2Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s2Button.addActionListener(subListener);
+						 
+						 this.add(s2Button);
+						 this.setPreferredSize(new Dimension(200, 100));
+					 }
+					 break;	
+				 case 'f':
+					 if(sub1&&sub2){
+						 this.setLayout(new GridLayout(2, 1, 4, 4));
+						 JButton s1Button = new JButton("");
+						 s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s1Button.setForeground(Color.green);
+						 s1Button.setBackground(Color.black);
+						 s1Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s1Button.addActionListener(subListener);
+						 
+						 JButton s2Button = new JButton("");
+						 s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s2Button.setForeground(Color.green);
+						 s2Button.setBackground(Color.black);
+						 s2Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s2Button.addActionListener(subListener);
+						 
+						 this.add(s1Button);
+						 this.add(s2Button);
+						 this.setPreferredSize(new Dimension(200, 100));
+					 }
+					 else if(sub1){
+						 this.setLayout(new GridLayout(1, 1, 4, 4));
+						 JButton s1Button = new JButton("");
+						 s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s1Button.setForeground(Color.green);
+						 s1Button.setBackground(Color.black);
+						 s1Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s1Button.addActionListener(subListener);
+						 
+						 this.add(s1Button);
+						 this.setPreferredSize(new Dimension(200, 100));
+					 }
+					 else if(sub2){
+						 this.setLayout(new GridLayout(1, 1, 4, 4));
+						 JButton s2Button = new JButton("");
+						 s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s2Button.setForeground(Color.green);
+						 s2Button.setBackground(Color.black);
+						 s2Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s2Button.addActionListener(subListener);
+						 
+						 this.add(s2Button);
+						 this.setPreferredSize(new Dimension(200, 100));
+					 }
+					 break;
+				 case 'l':
+					 if(sub1&&sub2){
+						 this.setLayout(new GridLayout(2, 1, 4, 4));
+						 JButton s1Button = new JButton("");
+						 s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s1Button.setForeground(Color.green);
+						 s1Button.setBackground(Color.black);
+						 s1Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s1Button.addActionListener(subListener);
+						 
+						 JButton s2Button = new JButton("");
+						 s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s2Button.setForeground(Color.green);
+						 s2Button.setBackground(Color.black);
+						 s2Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s2Button.addActionListener(subListener);
+						 
+						 this.add(s1Button);
+						 this.add(s2Button);
+						 this.setPreferredSize(new Dimension(200, 100));
+					 }
+					 else if(sub1){
+						 this.setLayout(new GridLayout(1, 1, 4, 4));
+						 JButton s1Button = new JButton("");
+						 s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s1Button.setForeground(Color.green);
+						 s1Button.setBackground(Color.black);
+						 s1Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s1Button.addActionListener(subListener);
+						 
+						 this.add(s1Button);
+						 this.setPreferredSize(new Dimension(200, 100));
+					 }
+					 else if(sub2){
+						 this.setLayout(new GridLayout(1, 1, 4, 4));
+						 JButton s2Button = new JButton("");
+						 s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
+						 s2Button.setForeground(Color.green);
+						 s2Button.setBackground(Color.black);
+						 s2Button.setHorizontalAlignment(SwingConstants.CENTER);
+						 s2Button.addActionListener(subListener);
+						 
+						 this.add(s2Button);
+						 this.setPreferredSize(new Dimension(200, 100));
+					 }
+					 break;
+				 default:
+					 System.out.println("CATOSTROPHIC!");
+			 }
+		 }
 		 }
 		 
 		 class healthText extends JTextArea{
