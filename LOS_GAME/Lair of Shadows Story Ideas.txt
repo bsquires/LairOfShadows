@@ -1,0 +1,16 @@
+Desert - Death motifs
+Enemies - Sci-fi
+One sub-boss = cerberus
+
+Story for
+-initial Start of game
+	-character description
+	-class description
+-each zone
+	-each subzone (Boss Lair)
+-Bosses
+	-Warrior
+	-Rogue
+	-Mage
+	-Final Boss (warrior)
+-Random Events
