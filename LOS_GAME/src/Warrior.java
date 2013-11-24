@@ -5,7 +5,7 @@ public class Warrior extends Player {
 	public Warrior(){
 		this.Health=200;
 		this.AttackForce=10;
-		this.Defense=20;
+		this.Defense=30;
 		this.Focus=100; //place holder
 		this.Level=1;
 		this.XP=0;
@@ -32,6 +32,7 @@ public class Warrior extends Player {
 	public void adjFocus(int f){this.Focus += f;}
 	public void setFocus(int f){this.Focus = f;}
 	public int getFocus(){return this.Focus;}
+	public int getSpecialStat(){return getFocus();};
 	
 	public void PowerStrike(){
 		System.out.println("You delievered a critical blow!");
@@ -58,6 +59,8 @@ public class Warrior extends Player {
 		this.setAttackForce(newAF);
 		this.setFocus(newFocus);
 	}
+	
+	
 	public void warriorFightMenu(Player bot, boolean isBot)
 	{
 		int damage = 0;

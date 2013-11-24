@@ -31,7 +31,7 @@ public class Player {
 	public void setDefense(int d){this.Defense = d;}
 	
 	//Look more into this
-	public void incLevel(int lvl){this.Level=this.XP/(100);}
+	public void calculateLevel(){this.Level=this.XP/(100);}
 	
 	//Find a way to calculate level and integrate it to the getLevel command
 	
@@ -48,8 +48,11 @@ public class Player {
 	public int getDefense(){return new Integer(Defense);}
 	public int getXP(){return new Integer(XP);}
 	public int getLevel(){return new Integer(Level);}
+	public int getSpecialStat(){return 0;};
+	
+	public void levelUp(){}
 
-	public void addWeapon(Weapon x){
+ 	public void addWeapon(Weapon x){
 		playerWeapon=new Weapon(x);
 		this.Health+=x.gethealthStat();
 		this.AttackForce+=x.getafStat();

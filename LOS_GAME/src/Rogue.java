@@ -2,9 +2,9 @@ public class Rogue extends Player{
 	protected int Agility;
 	
 	public Rogue(){
-		this.Health=110;
+		this.Health=140;
 		this.AttackForce=30;
-		this.Defense=40;
+		this.Defense=20;
 		this.Agility=100; //place holder
 		this.Level=0;
 		this.XP=0;
@@ -40,6 +40,7 @@ public class Rogue extends Player{
 	public void adjAgility(int amount){this.Agility += amount;}
 	
 	public void setAgility(int amount){this.Agility = amount;}
+	public int getSpecialStat(){return getAgility();};
 
 	public void levelUp()
 	{
