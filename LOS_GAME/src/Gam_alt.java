@@ -1,3 +1,6 @@
+//To Do:
+//Add Images
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -15,9 +18,12 @@ public class Gam_alt extends JFrame {
 	int currentAttackForce;
 	int currentDefense;
 	int currentSpecialStat;
+	int currentLevel;
+	boolean subFight=false;
 	boolean desert = true;
 	boolean forest = true;
 	boolean swamp = true;
+	boolean BossFight=false;
 	char playerType;
 	boolean playerAlive = true;
 	char location;
@@ -25,6 +31,7 @@ public class Gam_alt extends JFrame {
 	boolean subzone2 = true;
 	boolean subBoss=true;
 	char enemyType;
+	String attackType;
 	Randomizer Bob_the_AI=new Randomizer();
 	Player player = null;
 	Player Enemy=null;
@@ -253,7 +260,7 @@ public class Gam_alt extends JFrame {
 		iPanel.setBackground(Color.BLACK);
 		iPanel.setPreferredSize(new Dimension(200, 300));
 		try {
-			gImage = ImageIO.read(new File("nirvash.jpg"));
+			gImage = ImageIO.read(new File("arch.jpg"));
 		} catch (IOException e) {
 			System.out.println("Check the Image SHIT!");
 		}
@@ -272,6 +279,8 @@ public class Gam_alt extends JFrame {
 		currentHealth=player.getHealth();
 		currentAttackForce=player.getAttackForce();
 		currentDefense=player.getDefense();
+		currentSpecialStat=player.getSpecialStat();
+		currentLevel=player.getLevel();
 		
 		hText = new healthText(currentHealth);
 		afText = new attackText(currentAttackForce);
@@ -282,12 +291,28 @@ public class Gam_alt extends JFrame {
 		statPanel.add(dText);
 		statPanel.setPreferredSize(new Dimension(200, 100));
 		westBlock.add(statPanel, BorderLayout.CENTER);
-
+		
+		if(desert || forest || swamp){
 		//Creates a panel with the current zone choices available
 		dirButtonPanel = new directionPanel(desert, forest, swamp);
-
 		westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
 		gamePlay.add(westBlock, BorderLayout.WEST);
+		}
+		else{
+			File finalOpen = new File("Lair of Shadows Story Lair of Shadows.txt");
+			fileReader = new FileReader(finalOpen);
+			gText.read(fileReader, finalOpen.toString());
+			gText.append("\n"+"\n");
+			String str = "";
+			Scanner reader = new Scanner(new File("Lair of Shadows Enemy Mastermind.txt"));
+			while (reader.hasNext()){
+				str = reader.nextLine();	
+				gText.append(str);
+				gText.append("\n");
+			}
+			launchEvent();
+			createFinalBoss();
+		}
 		gamePlay.setPreferredSize(new Dimension(200, 500));
 
 		this.setContentPane(gamePlay);
@@ -297,7 +322,6 @@ public class Gam_alt extends JFrame {
 	}
 	
 	//Main play area for the Desert zone
-	//add story
 	//add SubBoss Stuff
 	public void desertZone() throws IOException{
 		if (subzone1){
@@ -331,17 +355,25 @@ public class Gam_alt extends JFrame {
 				gText.append(str);
 				gText.append("\n");
 			}
-			
+			reader=new Scanner(new File("Lair of Shadows Story Enemy Warrior Cerberus.txt"));
+			while (reader.hasNext()){
+				str = reader.nextLine();	
+				gText.append(str);
+				gText.append("\n");
+			}
+			createDesertSubBoss();
 		}
 		else{
+			gText.append("\n"+"You have cleared the Desert Zone!\n");
 			subzone1=true;
 			subzone2=true;
+			subBoss=true;
+			subFight=false;
 			launchGame(playerType);	
 		}
 	}
 	
 	//Main play area for the Forest zone
-	//add story
 	public void forestZone() throws IOException{
 		if (subzone1){
 			gText.append("\n"+"\n");
@@ -374,16 +406,25 @@ public class Gam_alt extends JFrame {
 				gText.append(str);
 				gText.append("\n");
 			}
+			reader=new Scanner(new File("Lair of Shadows Story Enemy Rogue Hermes.txt"));
+			while (reader.hasNext()){
+				str = reader.nextLine();	
+				gText.append(str);
+				gText.append("\n");
+			}
+			createForestSubBoss();
 		}
 		else{
+			gText.append("\n"+"You have cleared the Forest Zone!\n");
 			subzone1=true;
 			subzone2=true;
+			subBoss=true;
+			subFight=false;
 			launchGame(playerType);
 		}
 	}
 	
 	//Main play area for the Swamp zone
-	//add story
 	public void swampZone() throws IOException{
 		if (subzone1){
 			gText.append("\n"+"\n");
@@ -416,15 +457,27 @@ public class Gam_alt extends JFrame {
 				gText.append(str);
 				gText.append("\n");
 			}
+			reader=new Scanner(new File("Lair of Shadows Story Enemy Mage Medusa.txt"));
+			while (reader.hasNext()){
+				str = reader.nextLine();	
+				gText.append(str);
+				gText.append("\n");
+			}
+			createSwampSubBoss();
 		}
 		else{
+			gText.append("\n"+"You have cleared the Swamp Zone!\n");
 			subzone1=true;
 			subzone2=true;
+			subBoss=true;
+			subFight=false;
 			launchGame(playerType);	
 		}
 	}
 	
-	//could be specialized by zone
+	//Determines the event to occur.
+	//Player may end up with a random event or 
+	//fighting against an enemy
 	public void launchEvent() {
 		int event=Bob_the_AI.randomize(0, 3);
 		switch(event){
@@ -446,6 +499,7 @@ public class Gam_alt extends JFrame {
 		case 3:
 			//Random Encounter
 			randomEcounter();
+			break;
 		default:
 			System.out.println("\n"+"Catostraphic Disaster!!!!!!!"+"\n");
 			break;
@@ -454,7 +508,7 @@ public class Gam_alt extends JFrame {
 	
 	public void randomEcounter(){
 		int rdm=Bob_the_AI.randomize(0, 7);
-		
+		gText.append("\n");
 		switch(rdm)
 		{
 		case 0:
@@ -463,7 +517,8 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 			break;
 		case 1:
-			gText.append("A troll snuck into your camp over night and blunted your weapon!");
+			gText.append("A troll snuck into your camp over night"+"\n"
+					+"and blunted your weapon!");
 			player.adjAttackForce((int) (player.getAttackForce()*.05)*-1);
 			launchEvent();
 			break;
@@ -473,17 +528,20 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 			break;
 		case 3:
-			gText.append("A local armorer has heard tales of your struggle and wants to help. He fine tunes your weapon!");
+			gText.append("A local armorer has heard tales of your struggle and wants to help."
+					+ "\n" + "He fine tunes your weapon!");
 			player.adjAttackForce((int) (player.getAttackForce()*.03));
 			launchEvent();
 			break;
 		case 4:
-			gText.append("You find and eat some bad mushrooms. You fall and ill and your Defense falls as a result");
+			gText.append("You find and eat some bad mushrooms. " +
+					"\n"+"You fall and ill and your Defense falls as a result");
 			player.adjDefense((int) (player.getDefense()*.05)*-1);
 			launchEvent();
 			break;
 		case 5:
-			gText.append("Ralph the shield maker upgrades your defensive equipment in exchange for pint of local ale!");
+			gText.append("Ralph the shield maker upgrades your " +
+					"\n"+"defensive equipment in exchange for pint of local ale!");
 			player.adjDefense((int) (player.getDefense()*.05));
 			launchEvent();
 			break;
@@ -545,19 +603,19 @@ public class Gam_alt extends JFrame {
 	public void launchCombat(){
 		switch(playerType){
 		case 'w':
-			dirButtonPanel=new warriorPanel();
+			dirButtonPanel=new warriorPanel(currentSpecialStat);
 			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
 			revalidate();
 			repaint();
 			break;
 		case 'm':
-			dirButtonPanel=new magePanel();
+			dirButtonPanel=new magePanel(currentSpecialStat);
 			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
 			revalidate();
 			repaint();
 			break;
 		case 'r':
-			dirButtonPanel=new roguePanel();
+			dirButtonPanel=new roguePanel(currentSpecialStat);
 			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
 			revalidate();
 			repaint();
@@ -565,24 +623,301 @@ public class Gam_alt extends JFrame {
 		default:
 			System.out.println("Combat Error!");
 		}
-		/*The idea is that each button will lead to
-		 * a new public void in which the enemies attack
-		 * will be deduced and the combat will occur.
-		 * The buttons available on the panel will depend
-		 * on the special stat. After each round there will be a check to see if
-		 * either the player or enemy has died. If the enemy dies the level is recalculated
-		 * if the level is a milestone, player is sent back to their zones panel to see whether
-		 * they go on to the next subzone or subboss, or to launchGame to choose a new zone.
-		 * Should the player die the game is ended, what happens next is something we need to decide upon.
-		 * If no one is dead we return here.
-		*/
 	}
 	
-	public void theCombat(){
-		//A round of combat occurs
-		//gText.append("\n"+"COMBAT!"+"\n");
+	public void theCombat() throws IOException{
+		int pDamage=0;
+		int eDamage=0;
+		switch(playerType){
+		case 'w':
+			if (attackType.equals("Basic Attack")){
+				pDamage = (player.getAttackForce() * Randomizer.randomize(50, 100)/100) 
+						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+			}
+			else if(attackType.equals("Power Strike")){
+				pDamage = (player.getAttackForce() * Randomizer.randomize(90, 120)/100) 
+						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+				currentSpecialStat-= 10;
+			}
+			else if(attackType.equals("Block")){
+				Enemy.setDefense(Enemy.getDefense() * Randomizer.randomize(5, 20)/100);
+				currentSpecialStat-= 10;
+			}
+			break;
+		case 'r':
+			if (attackType.equals("Basic Attack")){
+				pDamage = (player.getAttackForce() * Randomizer.randomize(50, 100)/100)
+						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+			}
+			else if(attackType.equals("Critical Strike")){
+				pDamage = (player.getAttackForce() * Randomizer.randomize(90, 120)/100) 
+						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+				currentSpecialStat-= 10;
+			}
+			else if(attackType.equals("Disarm")){
+				Enemy.setAttackForce(Enemy.getAttackForce() * Randomizer.randomize(5, 20)/100);
+				currentSpecialStat-= 10;
+			}
+			break;
+		case 'm':
+			if (attackType.equals("Basic Attack")){
+				pDamage = (player.getAttackForce() * Randomizer.randomize(50, 100)/100)
+						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+			}
+			else if(attackType.equals("Cast")){
+				pDamage = (player.getAttackForce() * Randomizer.randomize(90, 120)/100) 
+						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+				currentSpecialStat-= 10;
+			}
+			else if(attackType.equals("Heal")){
+				player.adjHealth(Enemy.getHealth() * Randomizer.randomize(25, 60)/100);
+				currentSpecialStat-= 10;
+			}
+			break;
+		default:
+			System.out.println("Combat Error!");
+		}
+		//Enemy attack
+		int eAtx=Randomizer.randomize(0, 1);
+		switch(enemyType){
+		case 'w':
+			if (eAtx==0){
+				gText.append("Enemy launches his basic attack!\n");
+				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(50, 100)/100)
+						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+			}
+			else if(eAtx==1){
+				gText.append("Enemy launches Power Strike!\n");
+				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(90, 120)/100) 
+						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+			}
+			break;
+		case 'r':
+			if (eAtx==0){
+				gText.append("Enemy launches his basic attack!\n");
+				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(50, 100)/100)
+						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+			}
+			else if(eAtx==1){
+				gText.append("Enemy launches Critical Strike!\n");
+				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(90, 120)/100) 
+						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+			}
+			break;
+		case 'm':
+			if (eAtx==0){
+				gText.append("Enemy launches his basic attack!\n");
+				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(50, 100)/100)
+						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+			}
+			else if(eAtx==1){
+				gText.append("Enemy casts a spell!\n");
+				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(90, 120)/100) 
+						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+			}
+			break;
+		default:
+			System.out.println("Combat Error!");
+		}
+		
+		
+		
+		Enemy.adjHealth((-1*pDamage));
+		currentHealth-=eDamage;
+		gText.append("Your Health: "+currentHealth+" Enemy Health: "+Enemy.getHealth()+"\n");
+		
+		if(Enemy.getHealth()<=0){
+			if(BossFight){
+				Victory();
+			}
+			else if (subFight){
+				player.incXP(10);
+				subBoss=false;
+				switch(location){
+				case 'd':
+					desertZone();
+					break;
+				case 'f':
+					forestZone();
+					break;
+				case 's':
+					swampZone();
+					break;
+				default:
+					System.out.println("Checkout The Combat!");
+				}
+			}
+			else{
+				player.incXP(5);
+				levelCheck();
+			}
+		}
+		else if(currentHealth<=0){
+			GameOver();
+		}
+		else{
+			launchCombat();
+		}
+	}
+	
+	public void createDesertSubBoss(){
+		int botHealth = ((player.getHealth()*90)/100);
+		int botDefense = ((player.getDefense()*90)/100);
+		int botAttackForce = ((player.getAttackForce()*90)/100);
+		Enemy=new Warrior(botHealth, botAttackForce, botDefense, botHealth);
 		launchCombat();
 	}
+
+	public void createForestSubBoss(){
+		int botHealth = ((player.getHealth()*90)/100);
+		int botDefense = ((player.getDefense()*90)/100);
+		int botAttackForce = ((player.getAttackForce()*90)/100);
+		Enemy=new Rogue(botHealth, botAttackForce, botDefense, botHealth);
+		launchCombat();
+	}
+	public void createSwampSubBoss(){
+		int botHealth = ((player.getHealth()*90)/100);
+		int botDefense = ((player.getDefense()*90)/100);
+		int botAttackForce = ((player.getAttackForce()*90)/100);
+		Enemy=new Mage(botHealth, botAttackForce, botDefense, botHealth);
+		launchCombat();
+	}
+	
+	public void createFinalBoss(){
+		//Create a boss bot that is a mirror of the player		
+		int botHealth = player.getHealth();		
+		int botDefense =player.getDefense();
+		int botAttackForce = player.getAttackForce();
+		Enemy = new Warrior(botHealth, botAttackForce, botDefense, botHealth);
+		//The boss and the player fight until one are dead
+		BossFight=true;
+		launchCombat();
+	}
+	
+	public void GameOver(){
+		this.getContentPane().removeAll();
+		
+		JPanel failureText = new JPanel();
+		failureText.setLayout(new GridLayout(2, 1, 1, 1));
+		failureText.setForeground(Color.green);
+		failureText.setBackground(Color.black);
+
+		JLabel cName = new JLabel("CATASTROPHIC!");
+		cName.setFont(new Font("Helevetica", Font.BOLD, 60));
+		cName.setForeground(Color.green);
+		cName.setBackground(Color.black);
+		cName.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JLabel pName = new JLabel("FAILURE!");
+		pName.setFont(new Font("Helevetica", Font.BOLD, 60));
+		pName.setForeground(Color.green);
+		pName.setBackground(Color.black);
+		pName.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		failureText.add(cName);
+		failureText.add(pName);
+		failureText.setPreferredSize(new Dimension(700, 500));
+		
+		this.setContentPane(failureText);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	public void Victory(){
+this.getContentPane().removeAll();
+		
+		JPanel victoryText = new JPanel();
+		victoryText.setLayout(new GridLayout(2, 1, 1, 1));
+		victoryText.setForeground(Color.green);
+		victoryText.setBackground(Color.black);
+
+		JLabel cName = new JLabel("VICTORY!");
+		cName.setFont(new Font("Helevetica", Font.BOLD, 60));
+		cName.setForeground(Color.green);
+		cName.setBackground(Color.black);
+		cName.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JLabel pName = new JLabel("YOU HAVE SAVED THE WORLD!");
+		pName.setFont(new Font("Helevetica", Font.BOLD, 60));
+		pName.setForeground(Color.green);
+		pName.setBackground(Color.black);
+		pName.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		victoryText.add(cName);
+		victoryText.add(pName);
+		victoryText.setPreferredSize(new Dimension(700, 500));
+		
+		this.setContentPane(victoryText);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	
+	public void levelCheck() throws IOException{
+		player.calculateLevel();
+		
+		if(currentLevel!=player.getLevel()){
+			player.levelUp();
+			currentHealth=player.getHealth();
+			currentAttackForce=player.getAttackForce();
+			currentDefense=player.getDefense();
+			currentSpecialStat=player.getSpecialStat();
+			currentLevel=player.getLevel();
+			
+			hText = new healthText(currentHealth);
+			afText = new attackText(currentAttackForce);
+			dText = new defenseText(currentDefense);
+			
+			westBlock.remove(statPanel);
+			statPanel.removeAll();
+			statPanel.add(hText);
+			statPanel.add(afText);
+			statPanel.add(dText);
+			statPanel.setPreferredSize(new Dimension(200, 100));
+			westBlock.add(statPanel, BorderLayout.CENTER);
+			revalidate();
+			repaint();
+			
+			
+			if(subzone1){
+				subzone1=false;
+				switch(location){
+				case 'd':
+					desertZone();
+					break;
+				case 'f':
+					forestZone();
+					break;
+				case 's':
+					swampZone();
+					break;
+				default:
+					System.out.println("Checkout Level Check!");
+				}
+			}
+			else if(subzone2){
+				subzone2=false;
+				switch(location){
+				case 'd':
+					desertZone();
+					break;
+				case 'f':
+					forestZone();
+					break;
+				case 's':
+					swampZone();
+					break;
+				default:
+					System.out.println("Checkout Level Check!");
+				}
+			}
+		}
+		else{
+			launchEvent();
+		}
+		
+	}
+	
 	class initListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			String initChoice = event.getActionCommand();
@@ -886,158 +1221,263 @@ public class Gam_alt extends JFrame {
 		public void actionPerformed(ActionEvent event) {
 			String cChoice = event.getActionCommand();
 			if (cChoice.equals("Basic Attack")) {
-				theCombat();
+				attackType=cChoice;
+				try {
+					theCombat();
+				} catch (IOException e) {
+					System.out.println("Check combat listener!");
+				}
 			} 
 			else if (cChoice.equals("Power Strike")) {
-				theCombat();
+				attackType=cChoice;
+				try {
+					theCombat();
+				} catch (IOException e) {
+					System.out.println("Check combat listener!");
+				}
 			} 
 			else if (cChoice.equals("Block")) {
-				theCombat();
+				attackType=cChoice;
+				try {
+					theCombat();
+				} catch (IOException e) {
+					System.out.println("Check combat listener!");
+				}
 			}
 			else if(cChoice.equals("Critical Strike")){
-				theCombat();
+				attackType=cChoice;
+				try {
+					theCombat();
+				} catch (IOException e) {
+					System.out.println("Check combat listener!");
+				}
 			}
 			else if(cChoice.equals("Disarm")){
-				theCombat();
+				attackType=cChoice;
+				try {
+					theCombat();
+				} catch (IOException e) {
+					System.out.println("Check combat listener!");
+				}
 			}
 			else if(cChoice.equals("Cast")){
-				theCombat();
+				attackType=cChoice;
+				try {
+					theCombat();
+				} catch (IOException e) {
+					System.out.println("Check combat listener!");
+				}
 			}
 			else if(cChoice.equals("Heal")){
-				theCombat();
+				attackType=cChoice;
+				try {
+					theCombat();
+				} catch (IOException e) {
+					System.out.println("Check combat listener!");
+				}
 			}
 			else if(cChoice.equals("Run Away")){
-				//run away
+				gText.append("\n"+"You Ran Away!"+"\n"+"You Coward!"
+						+"\n"+"WHO do you think you are THE DOCTOR?"+"\n");
+				launchEvent();
 			}
 		}
 	}
 	
 	class warriorPanel extends JPanel{
-		public warriorPanel(){
+		public warriorPanel(int s){
 			ActionListener combatListener = new combatListener();
-			this.setLayout(new GridLayout(4, 1, 4, 4));
 			this.setForeground(Color.green);
 			this.setBackground(Color.black);
 			
-			JButton baButton = new JButton("Basic Attack");
-			baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			baButton.setForeground(Color.green);
-			baButton.setBackground(Color.black);
-			baButton.setHorizontalAlignment(SwingConstants.CENTER);
-			baButton.addActionListener(combatListener);
-			
-			JButton pButton = new JButton("Power Strike");
-			pButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			pButton.setForeground(Color.green);
-			pButton.setBackground(Color.black);
-			pButton.setHorizontalAlignment(SwingConstants.CENTER);
-			pButton.addActionListener(combatListener);
-			
-			JButton blButton = new JButton("Block");
-			blButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			blButton.setForeground(Color.green);
-			blButton.setBackground(Color.black);
-			blButton.setHorizontalAlignment(SwingConstants.CENTER);
-			blButton.addActionListener(combatListener);
-			
-			JButton rButton = new JButton("Run Away");
-			rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			rButton.setForeground(Color.green);
-			rButton.setBackground(Color.black);
-			rButton.setHorizontalAlignment(SwingConstants.CENTER);
-			rButton.addActionListener(combatListener);
-			
-			this.add(baButton);
-			this.add(pButton);
-			this.add(blButton);
-			this.add(rButton);
-			this.setPreferredSize(new Dimension(200, 100));
+			if (s>=10){
+				this.setLayout(new GridLayout(4, 1, 4, 4));
+				
+				JButton baButton = new JButton("Basic Attack");
+				baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				baButton.setForeground(Color.green);
+				baButton.setBackground(Color.black);
+				baButton.setHorizontalAlignment(SwingConstants.CENTER);
+				baButton.addActionListener(combatListener);
+				
+				JButton pButton = new JButton("Power Strike");
+				pButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				pButton.setForeground(Color.green);
+				pButton.setBackground(Color.black);
+				pButton.setHorizontalAlignment(SwingConstants.CENTER);
+				pButton.addActionListener(combatListener);
+				
+				JButton blButton = new JButton("Block");
+				blButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				blButton.setForeground(Color.green);
+				blButton.setBackground(Color.black);
+				blButton.setHorizontalAlignment(SwingConstants.CENTER);
+				blButton.addActionListener(combatListener);
+				
+				JButton rButton = new JButton("Run Away");
+				rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				rButton.setForeground(Color.green);
+				rButton.setBackground(Color.black);
+				rButton.setHorizontalAlignment(SwingConstants.CENTER);
+				rButton.addActionListener(combatListener);
+				
+				this.add(baButton);
+				this.add(pButton);
+				this.add(blButton);
+				this.add(rButton);
+				this.setPreferredSize(new Dimension(200, 100));
+			}
+			else{
+				this.setLayout(new GridLayout(2, 1, 4, 4));
+				
+				JButton baButton = new JButton("Basic Attack");
+				baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				baButton.setForeground(Color.green);
+				baButton.setBackground(Color.black);
+				baButton.setHorizontalAlignment(SwingConstants.CENTER);
+				baButton.addActionListener(combatListener);
+				
+				JButton rButton = new JButton("Run Away");
+				rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				rButton.setForeground(Color.green);
+				rButton.setBackground(Color.black);
+				rButton.setHorizontalAlignment(SwingConstants.CENTER);
+				rButton.addActionListener(combatListener);
+				
+				this.add(baButton);
+				this.add(rButton);
+				this.setPreferredSize(new Dimension(200, 100));
+			}
 		}
 	}
 	
 	class magePanel extends JPanel{
-		public magePanel(){
+		public magePanel(int s){
 			ActionListener combatListener = new combatListener();
-			this.setLayout(new GridLayout(4, 1, 4, 4));
 			this.setForeground(Color.green);
 			this.setBackground(Color.black);
 			
-			JButton baButton = new JButton("Basic Attack");
-			baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			baButton.setForeground(Color.green);
-			baButton.setBackground(Color.black);
-			baButton.setHorizontalAlignment(SwingConstants.CENTER);
-			baButton.addActionListener(combatListener);
-			
-			JButton pButton = new JButton("Cast");
-			pButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			pButton.setForeground(Color.green);
-			pButton.setBackground(Color.black);
-			pButton.setHorizontalAlignment(SwingConstants.CENTER);
-			pButton.addActionListener(combatListener);
-			
-			JButton blButton = new JButton("Heal");
-			blButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			blButton.setForeground(Color.green);
-			blButton.setBackground(Color.black);
-			blButton.setHorizontalAlignment(SwingConstants.CENTER);
-			blButton.addActionListener(combatListener);
-			
-			JButton rButton = new JButton("Run Away");
-			rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			rButton.setForeground(Color.green);
-			rButton.setBackground(Color.black);
-			rButton.setHorizontalAlignment(SwingConstants.CENTER);
-			rButton.addActionListener(combatListener);
-			
-			this.add(baButton);
-			this.add(pButton);
-			this.add(blButton);
-			this.add(rButton);
-			this.setPreferredSize(new Dimension(200, 100));
+			if(s>=10){
+				this.setLayout(new GridLayout(4, 1, 4, 4));
+				JButton baButton = new JButton("Basic Attack");
+				baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				baButton.setForeground(Color.green);
+				baButton.setBackground(Color.black);
+				baButton.setHorizontalAlignment(SwingConstants.CENTER);
+				baButton.addActionListener(combatListener);
+				
+				JButton pButton = new JButton("Cast");
+				pButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				pButton.setForeground(Color.green);
+				pButton.setBackground(Color.black);
+				pButton.setHorizontalAlignment(SwingConstants.CENTER);
+				pButton.addActionListener(combatListener);
+				
+				JButton blButton = new JButton("Heal");
+				blButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				blButton.setForeground(Color.green);
+				blButton.setBackground(Color.black);
+				blButton.setHorizontalAlignment(SwingConstants.CENTER);
+				blButton.addActionListener(combatListener);
+				
+				JButton rButton = new JButton("Run Away");
+				rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				rButton.setForeground(Color.green);
+				rButton.setBackground(Color.black);
+				rButton.setHorizontalAlignment(SwingConstants.CENTER);
+				rButton.addActionListener(combatListener);
+				
+				this.add(baButton);
+				this.add(pButton);
+				this.add(blButton);
+				this.add(rButton);
+				this.setPreferredSize(new Dimension(200, 100));
+			}
+			else{
+				this.setLayout(new GridLayout(2, 1, 4, 4));
+				JButton baButton = new JButton("Basic Attack");
+				baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				baButton.setForeground(Color.green);
+				baButton.setBackground(Color.black);
+				baButton.setHorizontalAlignment(SwingConstants.CENTER);
+				baButton.addActionListener(combatListener);
+				
+				JButton rButton = new JButton("Run Away");
+				rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				rButton.setForeground(Color.green);
+				rButton.setBackground(Color.black);
+				rButton.setHorizontalAlignment(SwingConstants.CENTER);
+				rButton.addActionListener(combatListener);
+				
+				this.add(baButton);
+				this.add(rButton);
+				this.setPreferredSize(new Dimension(200, 100));
+			}
 		}
 	}
 	
 	class roguePanel extends JPanel{
-		public roguePanel(){
+		public roguePanel(int s){
 			ActionListener combatListener = new combatListener();
-			this.setLayout(new GridLayout(4, 1, 4, 4));
 			this.setForeground(Color.green);
 			this.setBackground(Color.black);
 			
-			JButton baButton = new JButton("Basic Attack");
-			baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			baButton.setForeground(Color.green);
-			baButton.setBackground(Color.black);
-			baButton.setHorizontalAlignment(SwingConstants.CENTER);
-			baButton.addActionListener(combatListener);
-			
-			JButton pButton = new JButton("Crtical Strike");
-			pButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			pButton.setForeground(Color.green);
-			pButton.setBackground(Color.black);
-			pButton.setHorizontalAlignment(SwingConstants.CENTER);
-			pButton.addActionListener(combatListener);
-			
-			JButton blButton = new JButton("Disarm");
-			blButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			blButton.setForeground(Color.green);
-			blButton.setBackground(Color.black);
-			blButton.setHorizontalAlignment(SwingConstants.CENTER);
-			blButton.addActionListener(combatListener);
-			
-			JButton rButton = new JButton("Run Away");
-			rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
-			rButton.setForeground(Color.green);
-			rButton.setBackground(Color.black);
-			rButton.setHorizontalAlignment(SwingConstants.CENTER);
-			rButton.addActionListener(combatListener);
-			
-			this.add(baButton);
-			this.add(pButton);
-			this.add(blButton);
-			this.add(rButton);
-			this.setPreferredSize(new Dimension(200, 100));
+			if(s>=10){
+				this.setLayout(new GridLayout(4, 1, 4, 4));
+				JButton baButton = new JButton("Basic Attack");
+				baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				baButton.setForeground(Color.green);
+				baButton.setBackground(Color.black);
+				baButton.setHorizontalAlignment(SwingConstants.CENTER);
+				baButton.addActionListener(combatListener);
+				
+				JButton pButton = new JButton("Crtical Strike");
+				pButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				pButton.setForeground(Color.green);
+				pButton.setBackground(Color.black);
+				pButton.setHorizontalAlignment(SwingConstants.CENTER);
+				pButton.addActionListener(combatListener);
+				
+				JButton blButton = new JButton("Disarm");
+				blButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				blButton.setForeground(Color.green);
+				blButton.setBackground(Color.black);
+				blButton.setHorizontalAlignment(SwingConstants.CENTER);
+				blButton.addActionListener(combatListener);
+				
+				JButton rButton = new JButton("Run Away");
+				rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				rButton.setForeground(Color.green);
+				rButton.setBackground(Color.black);
+				rButton.setHorizontalAlignment(SwingConstants.CENTER);
+				rButton.addActionListener(combatListener);
+				
+				this.add(baButton);
+				this.add(pButton);
+				this.add(blButton);
+				this.add(rButton);
+				this.setPreferredSize(new Dimension(200, 100));
+			}
+			else{
+				this.setLayout(new GridLayout(2, 1, 4, 4));
+				JButton baButton = new JButton("Basic Attack");
+				baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				baButton.setForeground(Color.green);
+				baButton.setBackground(Color.black);
+				baButton.setHorizontalAlignment(SwingConstants.CENTER);
+				baButton.addActionListener(combatListener);
+				
+				JButton rButton = new JButton("Run Away");
+				rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+				rButton.setForeground(Color.green);
+				rButton.setBackground(Color.black);
+				rButton.setHorizontalAlignment(SwingConstants.CENTER);
+				rButton.addActionListener(combatListener);
+				
+				this.add(baButton);
+				this.add(rButton);
+				this.setPreferredSize(new Dimension(200, 100));
+			}
 		}
 	}
 }

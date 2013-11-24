@@ -2,10 +2,10 @@ public class Mage extends Player {
 	protected int Mana;
 	
 	public Mage(){
-		this.Health=105;
-		this.AttackForce=10;
-		this.Defense=20;
-		this.Mana=100; //place holder
+		this.Health=110;
+		this.AttackForce=20;
+		this.Defense=10;
+		this.Mana=200; //place holder
 		this.Level=1;
 		this.XP=0;
 	}
@@ -30,10 +30,8 @@ public class Mage extends Player {
 	
 	public void adjMana(int m){this.Mana += m;}
 	public void setMana(int m){this.Mana = m;}
-	public int getMana()
-	{
-		return this.Mana;
-	}
+	public int getMana(){return this.Mana;}
+	public int getSpecialStat(){return getMana();};
 	
 	public void Cast(){
 		System.out.println("You have cast a Spell!");
