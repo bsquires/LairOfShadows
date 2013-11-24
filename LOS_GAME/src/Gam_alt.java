@@ -1,5 +1,3 @@
-//I did more coded and added some comments
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -16,6 +14,7 @@ public class Gam_alt extends JFrame {
 	int currentHealth;
 	int currentAttackForce;
 	int currentDefense;
+	int currentSpecialStat;
 	boolean desert = true;
 	boolean forest = true;
 	boolean swamp = true;
@@ -24,8 +23,14 @@ public class Gam_alt extends JFrame {
 	char location;
 	boolean subzone1 = true;
 	boolean subzone2 = true;
-	Image gImage = null;
+	boolean subBoss=true;
+	char enemyType;
+	Randomizer Bob_the_AI=new Randomizer();
 	Player player = null;
+	Player Enemy=null;
+	Player zoneSubBoss=null;
+	Player theBoss=null;
+	Image gImage = null;
 	JPanel InitScreen = new JPanel();
 	JPanel ClassChoiceScreen = new JPanel();
 	JPanel gamePlay = new JPanel();
@@ -199,6 +204,7 @@ public class Gam_alt extends JFrame {
 
 	//The main game screen from which players will
 	//choose the zone they want to travel to
+	//add Fianl Boss Stuff
 	public void launchGame(char pT) throws IOException {
 		this.getContentPane().removeAll();
 		gamePlay.setLayout(new BorderLayout(4, 4));
@@ -292,24 +298,40 @@ public class Gam_alt extends JFrame {
 	
 	//Main play area for the Desert zone
 	//add story
+	//add SubBoss Stuff
 	public void desertZone() throws IOException{
 		if (subzone1){
+			gText.append("\n"+"\n");
 			String str = "";
-			Scanner reader = new Scanner("File.txt");
+			Scanner reader = new Scanner(new File("Lair of Shadows DesertSubZone Dunes.txt"));
 			while (reader.hasNext()){
 				str = reader.nextLine();	
 				gText.append(str);
+				gText.append("\n");
 			}
 			launchEvent();
 		}
 		else if(subzone2){
+			gText.append("\n"+"\n");
 			String str = "";
-			Scanner reader = new Scanner("File.txt");
+			Scanner reader = new Scanner(new File("Lair of Shadows DesertSubZone Canyon.txt"));
 			while (reader.hasNext()){
 				str = reader.nextLine();	
 				gText.append(str);
+				gText.append("\n");
 			}
 			launchEvent();
+		}
+		else if(subBoss){
+			gText.append("\n"+"\n");
+			String str = "";
+			Scanner reader = new Scanner(new File("Lair of Shadows DesertBossZone Mountains.txt"));
+			while (reader.hasNext()){
+				str = reader.nextLine();	
+				gText.append(str);
+				gText.append("\n");
+			}
+			
 		}
 		else{
 			subzone1=true;
@@ -322,22 +344,36 @@ public class Gam_alt extends JFrame {
 	//add story
 	public void forestZone() throws IOException{
 		if (subzone1){
+			gText.append("\n"+"\n");
 			String str = "";
-			Scanner reader = new Scanner("File.txt");
+			Scanner reader = new Scanner(new File("Lair of Shadows ForestSubZone Open Clearing.txt"));
 			while (reader.hasNext()){
 				str = reader.nextLine();	
 				gText.append(str);
+				gText.append("\n");
 			}
 			launchEvent();
 		}
 		else if(subzone2){
+			gText.append("\n"+"\n");
 			String str = "";
-			Scanner reader = new Scanner("File.txt");
+			Scanner reader = new Scanner(new File("Lair of Shadows ForestSubZone Cliff.txt"));
 			while (reader.hasNext()){
 				str = reader.nextLine();	
 				gText.append(str);
+				gText.append("\n");
 			}
 			launchEvent();
+		}
+		else if(subBoss){
+			gText.append("\n"+"\n");
+			String str = "";
+			Scanner reader = new Scanner(new File("Lair of Shadows ForestBossZone Hollow Tree.txt"));
+			while (reader.hasNext()){
+				str = reader.nextLine();	
+				gText.append(str);
+				gText.append("\n");
+			}
 		}
 		else{
 			subzone1=true;
@@ -350,22 +386,36 @@ public class Gam_alt extends JFrame {
 	//add story
 	public void swampZone() throws IOException{
 		if (subzone1){
+			gText.append("\n"+"\n");
 			String str = "";
-			Scanner reader = new Scanner("File.txt");
+			Scanner reader = new Scanner(new File("Lair of Shadows SwampSubZone Lake.txt"));
 			while (reader.hasNext()){
 				str = reader.nextLine();	
 				gText.append(str);
+				gText.append("\n");
 			}
 			launchEvent();
 		}
 		else if(subzone2){
+			gText.append("\n"+"\n");
 			String str = "";
-			Scanner reader = new Scanner("File.txt");
+			Scanner reader = new Scanner(new File("Lair of Shadows SwampSubZone Dry Patch.txt"));
 			while (reader.hasNext()){
 				str = reader.nextLine();	
 				gText.append(str);
+				gText.append("\n");
 			}
 			launchEvent();
+		}
+		else if(subBoss){
+			gText.append("\n"+"\n");
+			String str = "";
+			Scanner reader = new Scanner(new File("Lair of Shadows SwampBossZone Vine Covered Mass.txt"));
+			while (reader.hasNext()){
+				str = reader.nextLine();	
+				gText.append(str);
+				gText.append("\n");
+			}
 		}
 		else{
 			subzone1=true;
@@ -376,12 +426,118 @@ public class Gam_alt extends JFrame {
 	
 	//could be specialized by zone
 	public void launchEvent() {
-		// The way this is setup it can be specialized or generalized
-		int x = 0;
-		if (x == 0/* fight */) {
+		int event=Bob_the_AI.randomize(0, 3);
+		switch(event){
+		case 0:
+			gText.append("\n"+"Enemy Encounter!"+"\n");
+			createEnemy();
 			launchCombat();
-		} else {
-			// deal with other conditions
+			break;
+		case 1:
+			gText.append("\n"+"Enemy Encounter!"+"\n");
+			createEnemy();
+			launchCombat();
+			break;
+		case 2:
+			gText.append("\n"+"Enemy Encounter!"+"\n");
+			createEnemy();
+			launchCombat();
+			break;
+		case 3:
+			//Random Encounter
+			randomEcounter();
+		default:
+			System.out.println("\n"+"Catostraphic Disaster!!!!!!!"+"\n");
+			break;
+		}
+	}
+	
+	public void randomEcounter(){
+		int rdm=Bob_the_AI.randomize(0, 7);
+		
+		switch(rdm)
+		{
+		case 0:
+			gText.append("You met a farmer who would like you to stay for Dinner.");
+			player.adjHealth( (int) (player.getHealth()*.05));
+			launchEvent();
+			break;
+		case 1:
+			gText.append("A troll snuck into your camp over night and blunted your weapon!");
+			player.adjAttackForce((int) (player.getAttackForce()*.05)*-1);
+			launchEvent();
+			break;
+		case 2:
+			gText.append("You found a health potion hidden behind a rock");
+			player.adjHealth( (int) (player.getHealth()*.10));
+			launchEvent();
+			break;
+		case 3:
+			gText.append("A local armorer has heard tales of your struggle and wants to help. He fine tunes your weapon!");
+			player.adjAttackForce((int) (player.getAttackForce()*.03));
+			launchEvent();
+			break;
+		case 4:
+			gText.append("You find and eat some bad mushrooms. You fall and ill and your Defense falls as a result");
+			player.adjDefense((int) (player.getDefense()*.05)*-1);
+			launchEvent();
+			break;
+		case 5:
+			gText.append("Ralph the shield maker upgrades your defensive equipment in exchange for pint of local ale!");
+			player.adjDefense((int) (player.getDefense()*.05));
+			launchEvent();
+			break;
+		case 6:
+			gText.append("A fairy appears out of nowhere and heals your wounds!");
+			player.adjHealth( (int) (player.getHealth()*.025));
+			launchEvent();
+			break;
+		case 7: 
+			gText.append("A satyr at play throws a rock at your head while you sleep! Ouch!");
+			player.adjHealth( (int) (player.getHealth()*.05)*-1);
+			launchEvent();
+			break;
+		default:
+			System.out.println("Your Random Event encounter code is broken");
+			break;	
+		}
+	}
+	
+	public void createEnemy(){
+		int e = Randomizer.randomize(0, 2);
+		//Generate a Randomizer.random multiple between 25% and 100%
+		int botStatsMultiplier = Randomizer.randomize(25, 75)/100;
+		
+		//The bot stats will be used as the initial stats for our bots
+		//created by the following switch statement.
+		int botHealth = botStatsMultiplier*player.getHealth();
+		int botDefense = botStatsMultiplier*player.getDefense();
+		int botAttackForce = botStatsMultiplier*player.getAttackForce();
+		
+		switch(e){
+		case 0:
+			//create a warrior enemy
+			//Special Attribute Focus will be a product 1/2 the bots health
+			Warrior warBot = new Warrior(botHealth, botAttackForce, botDefense, (int) (botHealth*.5));
+			Enemy=new Warrior(warBot);
+			enemyType='w';
+			break;
+		case 1:
+			//create a rogue enemy
+			//Special Attribute Agility will be a product 1/2 the bots health
+			Rogue rogueBot = new Rogue(botHealth, botAttackForce, botDefense, (int) (botHealth*.5));
+			Enemy=new Rogue(rogueBot);
+			enemyType='r';
+			break;
+		case 2:
+			//create a mage enemy
+			//Special Attribute Mana will be a product 1/2 the bots health
+			Mage mageBot = new Mage(botHealth, botAttackForce, botDefense, (int) (botHealth*.5));
+			Enemy=new Mage(mageBot);
+			enemyType='m';
+			break;
+		default:
+			System.out.println("You should not reach this code in create an enemy");
 		}
 	}
 	
@@ -390,12 +546,21 @@ public class Gam_alt extends JFrame {
 		switch(playerType){
 		case 'w':
 			dirButtonPanel=new warriorPanel();
+			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
+			revalidate();
+			repaint();
 			break;
 		case 'm':
 			dirButtonPanel=new magePanel();
+			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
+			revalidate();
+			repaint();
 			break;
 		case 'r':
 			dirButtonPanel=new roguePanel();
+			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
+			revalidate();
+			repaint();
 			break;
 		default:
 			System.out.println("Combat Error!");
@@ -412,7 +577,12 @@ public class Gam_alt extends JFrame {
 		 * If no one is dead we return here.
 		*/
 	}
-
+	
+	public void theCombat(){
+		//A round of combat occurs
+		//gText.append("\n"+"COMBAT!"+"\n");
+		launchCombat();
+	}
 	class initListener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			String initChoice = event.getActionCommand();
@@ -532,26 +702,6 @@ public class Gam_alt extends JFrame {
 			}
 		}
 	}
-
-	/*
-	class subListener implements ActionListener {
-		public void actionPerformed(ActionEvent event) {
-			String cChoice = event.getActionCommand();
-			if (cChoice.equals(" ")) {
-				launchEvent();
-			} else if (cChoice.equals(" ")) {
-				launchEvent();
-			} else if (cChoice.equals(" ")) {
-				launchEvent();
-			} else if (cChoice.equals(" ")) {
-				launchEvent();
-			} else if (cChoice.equals(" ")) {
-				launchEvent();
-			} else if (cChoice.equals(" ")) {
-				launchEvent();
-			}
-		}
-	}*/
 
 	class directionPanel extends JPanel {
 		public directionPanel(boolean d, boolean f, boolean s) {
@@ -673,150 +823,6 @@ public class Gam_alt extends JFrame {
 		}
 	}
 
-	/*
-	class subDirection extends JPanel {
-		public subDirection(char zone, boolean sub1, boolean sub2) {
-			ActionListener subListener = new dirListener();
-			this.setForeground(Color.green);
-			this.setBackground(Color.black);
-			switch (zone) {
-			case 'd':
-				if (sub1 && sub2) {
-					this.setLayout(new GridLayout(2, 1, 4, 4));
-					JButton s1Button = new JButton("Dune");
-					s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s1Button.setForeground(Color.green);
-					s1Button.setBackground(Color.black);
-					s1Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s1Button.addActionListener(subListener);
-
-					JButton s2Button = new JButton("Valley");
-					s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s2Button.setForeground(Color.green);
-					s2Button.setBackground(Color.black);
-					s2Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s2Button.addActionListener(subListener);
-
-					this.add(s1Button);
-					this.add(s2Button);
-					this.setPreferredSize(new Dimension(200, 100));
-				} else if (sub1) {
-					this.setLayout(new GridLayout(1, 1, 4, 4));
-					JButton s1Button = new JButton("");
-					s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s1Button.setForeground(Color.green);
-					s1Button.setBackground(Color.black);
-					s1Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s1Button.addActionListener(subListener);
-
-					this.add(s1Button);
-					this.setPreferredSize(new Dimension(200, 100));
-				} else if (sub2) {
-					this.setLayout(new GridLayout(1, 1, 4, 4));
-					JButton s2Button = new JButton("");
-					s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s2Button.setForeground(Color.green);
-					s2Button.setBackground(Color.black);
-					s2Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s2Button.addActionListener(subListener);
-
-					this.add(s2Button);
-					this.setPreferredSize(new Dimension(200, 100));
-				}
-				break;
-			case 'f':
-				if (sub1 && sub2) {
-					this.setLayout(new GridLayout(2, 1, 4, 4));
-					JButton s1Button = new JButton("");
-					s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s1Button.setForeground(Color.green);
-					s1Button.setBackground(Color.black);
-					s1Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s1Button.addActionListener(subListener);
-
-					JButton s2Button = new JButton("");
-					s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s2Button.setForeground(Color.green);
-					s2Button.setBackground(Color.black);
-					s2Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s2Button.addActionListener(subListener);
-
-					this.add(s1Button);
-					this.add(s2Button);
-					this.setPreferredSize(new Dimension(200, 100));
-				} else if (sub1) {
-					this.setLayout(new GridLayout(1, 1, 4, 4));
-					JButton s1Button = new JButton("");
-					s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s1Button.setForeground(Color.green);
-					s1Button.setBackground(Color.black);
-					s1Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s1Button.addActionListener(subListener);
-
-					this.add(s1Button);
-					this.setPreferredSize(new Dimension(200, 100));
-				} else if (sub2) {
-					this.setLayout(new GridLayout(1, 1, 4, 4));
-					JButton s2Button = new JButton("");
-					s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s2Button.setForeground(Color.green);
-					s2Button.setBackground(Color.black);
-					s2Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s2Button.addActionListener(subListener);
-
-					this.add(s2Button);
-					this.setPreferredSize(new Dimension(200, 100));
-				}
-				break;
-			case 'l':
-				if (sub1 && sub2) {
-					this.setLayout(new GridLayout(2, 1, 4, 4));
-					JButton s1Button = new JButton("");
-					s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s1Button.setForeground(Color.green);
-					s1Button.setBackground(Color.black);
-					s1Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s1Button.addActionListener(subListener);
-
-					JButton s2Button = new JButton("");
-					s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s2Button.setForeground(Color.green);
-					s2Button.setBackground(Color.black);
-					s2Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s2Button.addActionListener(subListener);
-
-					this.add(s1Button);
-					this.add(s2Button);
-					this.setPreferredSize(new Dimension(200, 100));
-				} else if (sub1) {
-					this.setLayout(new GridLayout(1, 1, 4, 4));
-					JButton s1Button = new JButton("");
-					s1Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s1Button.setForeground(Color.green);
-					s1Button.setBackground(Color.black);
-					s1Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s1Button.addActionListener(subListener);
-
-					this.add(s1Button);
-					this.setPreferredSize(new Dimension(200, 100));
-				} else if (sub2) {
-					this.setLayout(new GridLayout(1, 1, 4, 4));
-					JButton s2Button = new JButton("");
-					s2Button.setFont(new Font("Helevetica", Font.BOLD, 12));
-					s2Button.setForeground(Color.green);
-					s2Button.setBackground(Color.black);
-					s2Button.setHorizontalAlignment(SwingConstants.CENTER);
-					s2Button.addActionListener(subListener);
-
-					this.add(s2Button);
-					this.setPreferredSize(new Dimension(200, 100));
-				}
-				break;
-			default:
-				System.out.println("CATOSTROPHIC!");
-			}
-		}
-	}*/
 
 	class healthText extends JTextArea {
 		public healthText() {
@@ -876,15 +882,162 @@ public class Gam_alt extends JFrame {
 		}
 	}
 
+	class combatListener implements ActionListener{
+		public void actionPerformed(ActionEvent event) {
+			String cChoice = event.getActionCommand();
+			if (cChoice.equals("Basic Attack")) {
+				theCombat();
+			} 
+			else if (cChoice.equals("Power Strike")) {
+				theCombat();
+			} 
+			else if (cChoice.equals("Block")) {
+				theCombat();
+			}
+			else if(cChoice.equals("Critical Strike")){
+				theCombat();
+			}
+			else if(cChoice.equals("Disarm")){
+				theCombat();
+			}
+			else if(cChoice.equals("Cast")){
+				theCombat();
+			}
+			else if(cChoice.equals("Heal")){
+				theCombat();
+			}
+			else if(cChoice.equals("Run Away")){
+				//run away
+			}
+		}
+	}
+	
 	class warriorPanel extends JPanel{
-		public warriorPanel(){}
+		public warriorPanel(){
+			ActionListener combatListener = new combatListener();
+			this.setLayout(new GridLayout(4, 1, 4, 4));
+			this.setForeground(Color.green);
+			this.setBackground(Color.black);
+			
+			JButton baButton = new JButton("Basic Attack");
+			baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			baButton.setForeground(Color.green);
+			baButton.setBackground(Color.black);
+			baButton.setHorizontalAlignment(SwingConstants.CENTER);
+			baButton.addActionListener(combatListener);
+			
+			JButton pButton = new JButton("Power Strike");
+			pButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			pButton.setForeground(Color.green);
+			pButton.setBackground(Color.black);
+			pButton.setHorizontalAlignment(SwingConstants.CENTER);
+			pButton.addActionListener(combatListener);
+			
+			JButton blButton = new JButton("Block");
+			blButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			blButton.setForeground(Color.green);
+			blButton.setBackground(Color.black);
+			blButton.setHorizontalAlignment(SwingConstants.CENTER);
+			blButton.addActionListener(combatListener);
+			
+			JButton rButton = new JButton("Run Away");
+			rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			rButton.setForeground(Color.green);
+			rButton.setBackground(Color.black);
+			rButton.setHorizontalAlignment(SwingConstants.CENTER);
+			rButton.addActionListener(combatListener);
+			
+			this.add(baButton);
+			this.add(pButton);
+			this.add(blButton);
+			this.add(rButton);
+			this.setPreferredSize(new Dimension(200, 100));
+		}
 	}
 	
 	class magePanel extends JPanel{
-		public magePanel(){}
+		public magePanel(){
+			ActionListener combatListener = new combatListener();
+			this.setLayout(new GridLayout(4, 1, 4, 4));
+			this.setForeground(Color.green);
+			this.setBackground(Color.black);
+			
+			JButton baButton = new JButton("Basic Attack");
+			baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			baButton.setForeground(Color.green);
+			baButton.setBackground(Color.black);
+			baButton.setHorizontalAlignment(SwingConstants.CENTER);
+			baButton.addActionListener(combatListener);
+			
+			JButton pButton = new JButton("Cast");
+			pButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			pButton.setForeground(Color.green);
+			pButton.setBackground(Color.black);
+			pButton.setHorizontalAlignment(SwingConstants.CENTER);
+			pButton.addActionListener(combatListener);
+			
+			JButton blButton = new JButton("Heal");
+			blButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			blButton.setForeground(Color.green);
+			blButton.setBackground(Color.black);
+			blButton.setHorizontalAlignment(SwingConstants.CENTER);
+			blButton.addActionListener(combatListener);
+			
+			JButton rButton = new JButton("Run Away");
+			rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			rButton.setForeground(Color.green);
+			rButton.setBackground(Color.black);
+			rButton.setHorizontalAlignment(SwingConstants.CENTER);
+			rButton.addActionListener(combatListener);
+			
+			this.add(baButton);
+			this.add(pButton);
+			this.add(blButton);
+			this.add(rButton);
+			this.setPreferredSize(new Dimension(200, 100));
+		}
 	}
 	
 	class roguePanel extends JPanel{
-		public roguePanel(){}
+		public roguePanel(){
+			ActionListener combatListener = new combatListener();
+			this.setLayout(new GridLayout(4, 1, 4, 4));
+			this.setForeground(Color.green);
+			this.setBackground(Color.black);
+			
+			JButton baButton = new JButton("Basic Attack");
+			baButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			baButton.setForeground(Color.green);
+			baButton.setBackground(Color.black);
+			baButton.setHorizontalAlignment(SwingConstants.CENTER);
+			baButton.addActionListener(combatListener);
+			
+			JButton pButton = new JButton("Crtical Strike");
+			pButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			pButton.setForeground(Color.green);
+			pButton.setBackground(Color.black);
+			pButton.setHorizontalAlignment(SwingConstants.CENTER);
+			pButton.addActionListener(combatListener);
+			
+			JButton blButton = new JButton("Disarm");
+			blButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			blButton.setForeground(Color.green);
+			blButton.setBackground(Color.black);
+			blButton.setHorizontalAlignment(SwingConstants.CENTER);
+			blButton.addActionListener(combatListener);
+			
+			JButton rButton = new JButton("Run Away");
+			rButton.setFont(new Font("Helevetica", Font.BOLD, 12));
+			rButton.setForeground(Color.green);
+			rButton.setBackground(Color.black);
+			rButton.setHorizontalAlignment(SwingConstants.CENTER);
+			rButton.addActionListener(combatListener);
+			
+			this.add(baButton);
+			this.add(pButton);
+			this.add(blButton);
+			this.add(rButton);
+			this.setPreferredSize(new Dimension(200, 100));
+		}
 	}
 }
