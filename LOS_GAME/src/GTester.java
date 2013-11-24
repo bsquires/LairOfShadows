@@ -10,7 +10,5 @@ public class GTester {
         JFrame frame = new Gam_alt();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
 	}
-
 }
