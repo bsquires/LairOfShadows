@@ -4,7 +4,7 @@ public class Player {
 	protected int AttackForce=0;
 	protected int Defense=0;
 	protected int XP=0;
-	protected int Level=0;
+	protected int Level=1;
 	protected Weapon playerWeapon;
 	
 	protected boolean ranAway = false;
@@ -121,7 +121,7 @@ public class Player {
 			if(XP>372)
 			{
 				System.out.println("Congratulations you have leveled up to Level 4!");
-				this.Level = 7;
+				this.Level = 8;
 			}
 			
 			default:

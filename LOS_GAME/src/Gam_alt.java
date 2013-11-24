@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 import javax.swing.event.*;
+
 import java.util.*;
 import java.io.*;
 
@@ -447,7 +448,7 @@ public class Gam_alt extends JFrame {
 			//Random Encounter
 			randomEcounter();
 		default:
-			System.out.println("\n"+"Catostraphic Disaster!!!!!!!"+"\n");
+			System.out.println("\n"+"Launch Event Catostraphic Disaster!!!!!!!"+"\n");
 			break;
 		}
 	}
@@ -503,7 +504,8 @@ public class Gam_alt extends JFrame {
 		}
 	}
 	
-	public void createEnemy(){
+	public Player createEnemy(){
+		Player Enemy = null;
 		int e = Randomizer.randomize(0, 2);
 		//Generate a Randomizer.random multiple between 25% and 100%
 		int botStatsMultiplier = Randomizer.randomize(25, 75)/100;
@@ -539,6 +541,7 @@ public class Gam_alt extends JFrame {
 		default:
 			System.out.println("You should not reach this code in create an enemy");
 		}
+		return Enemy;
 	}
 	
 	//Combat panel
@@ -576,6 +579,7 @@ public class Gam_alt extends JFrame {
 		 * Should the player die the game is ended, what happens next is something we need to decide upon.
 		 * If no one is dead we return here.
 		*/
+		Combat(player, createEnemy());
 	}
 	
 	public void theCombat(){
@@ -1040,4 +1044,170 @@ public class Gam_alt extends JFrame {
 			this.setPreferredSize(new Dimension(200, 100));
 		}
 	}
+
+
+
+public void Combat(Player player1, Player bot) {
+	char class_type='n';
+	char bot_class_type = 'n';
+	
+	
+		//determine the player class
+		if(player1 instanceof Rogue){class_type = 'r';}
+		if(player1 instanceof Warrior){class_type = 'w';}
+		if(player1 instanceof Mage){class_type = 'm';}
+		
+		if(bot instanceof Rogue){bot_class_type = 'r';}
+		if(bot instanceof Warrior){bot_class_type = 'w';}
+		if(bot instanceof Mage){bot_class_type = 'w';}
+	
+	
+	
+		int actionCount = 0;
+		
+		//Start the fight
+		int initialHealth = player1.getHealth();
+		int initialDefense = player1.getDefense();
+		int initialAF = player1.getAttackForce();
+		//get the class unique special attribute
+		int initialSpecial = 0;
+			switch(class_type)
+			{
+			case 'r':
+				initialSpecial = ((Rogue) player1).getAgility();
+				break;
+				
+			case 'w':
+				initialSpecial = ((Warrior) player1).getFocus();
+				break;
+				
+			case 'm':
+				initialSpecial = ((Mage) player1).getMana();
+				break;
+			}//end switch
+			
+			int XP = initialSpecial * Randomizer.randomize(1, 5)/100;
+		
+		
+		//Continue the fight until someone dies
+		while((player1.getHealth() > 0 && bot.getHealth() > 0) && player1.ranAway == false)
+		{
+			
+			if(actionCount%2==0)
+			{
+				//player1 action
+					//attack
+				gText.append("YOUR TURN!");
+				switch(class_type)
+				{
+				case 'r':
+					((Rogue) player1).rogueFightMenu(bot, false);
+					break;
+					
+				case 'w':
+					((Warrior) player1).warriorFightMenu(bot, false);
+					break;
+					
+				case 'm':
+					((Mage) player1).mageFightMenu(bot, false);
+					break;
+				}//end switch
+
+			}
+			else 
+			{
+				//bot action
+				//player1 action
+				//attack
+				gText.append("It's the enemy's turn!");
+			switch(bot_class_type)
+			{
+			case 'r':
+				((Rogue) player1).rogueFightMenu(player1, true);
+				break;
+				
+			case 'w':
+				((Warrior) player1).warriorFightMenu(player1, true);
+				break;
+				
+			case 'm':
+				((Mage) player1).mageFightMenu(player1, true);
+				break;
+				
+				default:
+				gText.append("Your code is broken at Combat boss action switch");
+					
+			}//end switch
+			}//end enemy attack else
+			
+			actionCount++;//increments to allow each person to attack on after the other
+			
+		}//end fight loop
+		
+		/*
+		 * WRITE CODE HERE TO CHECK IF YOUR PLAYER IS DEAD AND TAKE APPROPRIATE ACTION
+		 */
+		
+		
+		//Give the player their stats at the beginning of the fight
+		player1.setHealth(initialHealth);
+		player1.setDefense(initialDefense);
+		player1.setAttackForce(initialAF);
+		
+			switch(class_type)
+			{
+			case 'r':
+				((Rogue) player1).setAgility(initialSpecial);
+				break;
+				
+			case 'w':
+				((Warrior) player1).setFocus(initialSpecial);
+				break;
+				
+			case 'm':
+				((Mage) player1).setMana(initialSpecial);
+				break;
+			}//end switch
+		
+		
+		//do not increase the experience if player1 ran away
+		if (player1.getRanAway()==true)
+		{
+			player1.adjRanAway(false);
+			return;
+
+		}
+		
+		//increase the experience level
+		player1.incXP(XP);
+		
+		//Check to see if the player leveled
+		int curLevel = player1.getLevel();
+		player1.checkLevel();
+		return;
+		/*
+		if(curLevel<player1.getLevel())
+		{
+			switch(class_type)
+			{
+			case 'r':
+				((Rogue) player1).levelUp();
+				break;
+				
+			case 'w':
+				((Warrior) player1).levelUp();
+				break;
+				
+			case 'm':
+				((Mage) player1).levelUp();
+				break;
+			}//end switch
+			*/
+		}
+			
+	
+	
+	
 }
+
+
