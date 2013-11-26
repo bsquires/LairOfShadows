@@ -34,14 +34,6 @@ public class Warrior extends Player {
 	public int getFocus(){return this.Focus;}
 	public int getSpecialStat(){return getFocus();};
 	
-	public void PowerStrike(){
-		System.out.println("You delievered a critical blow!");
-	}
-	
-	public void Block(){
-		System.out.println("You have blocked the enemies attack!");
-	}
-	
 	public void levelUp()
 	{
 		//If the layer has leveled, increase their attributes by 25%
@@ -59,78 +51,5 @@ public class Warrior extends Player {
 		this.setAttackForce(newAF);
 		this.setFocus(newFocus);
 	}
-	
-	
-	public void warriorFightMenu(Player bot, boolean isBot)
-	{
-		int damage = 0;
-		char actionChoice = ' ';
-		System.out.println("Your turn choose an action: ");
-		System.out.println("Click X to slice the enemy with your sword!");
-		System.out.println("Click Y to run away!");
-		System.out.println("Click Z to deliver an especially powerful blow to the enemy (this will cost focus)");
-		System.out.println("Click A to block the enemies attack and and lower his defense (this will cost focus)");
-		
-		if(isBot)
-		{
-			int botChoice = Randomizer.randomize(1,100);
-			
-			if(botChoice<=65) actionChoice = 'X';
-			if(botChoice>65 && botChoice<85) actionChoice = 'Z';
-			if(botChoice >85) actionChoice = 'A';
-		}
-		else
-		{
-			/*use the GUI to get the player's actionChoice
-		 
-		 */
-		}
-		
-		switch(actionChoice)
-		{
-		case 'X':
-			this.basicAttack();
-			damage = (this.getAttackForce() * Randomizer.randomize(50, 100)/100) - (bot.getDefense() * Randomizer.randomize(80, 100)/100);
-			bot.adjHealth(bot.getHealth()-damage);
-			break;
-			
-		case 'Y':
-			this.runAway();
-			this.ranAway = true;
-			break;
-		
-		case 'Z':
-			this.PowerStrike();
-			if(this.Focus>9)
-			{
-				damage = (this.getAttackForce() * Randomizer.randomize(90, 120)/100) - (bot.getDefense() * Randomizer.randomize(80, 100)/100);
-				bot.adjHealth(bot.getHealth()-damage);
-				this.Focus -= 10;
-			}
-			else
-			{
-				System.out.println("You don't have enough Focus for that!"
-					+ "\nThe enemy has stolen your turn!");
-			}//end CritStrike if/else
-			break;
-			
-		case 'A':
-			this.Block();
-			if(this.Focus>9)
-			{
-				bot.adjDefense(bot.getDefense() * Randomizer.randomize(5, 20)/100);
-			}
-			else
-			{
-				System.out.println("You don't have enough Focus for that!"
-					+ "\nThe enemy has stolen your turn!");
-			}//end Disarm if/else
-			break;
-			
-			default:
-				System.out.println("Your code is broken at warriorFightMenu()");
-				break;
-		}//end switch
-		
-	}//end warriorFightMenu
+
 }
