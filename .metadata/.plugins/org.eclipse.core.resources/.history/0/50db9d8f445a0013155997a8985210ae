@@ -465,22 +465,6 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 		}
 		else if(subzone2){
-			//Cliff Image
-			westBlock.remove(iPanel);
-			iPanel.removeAll();
-			iL.setIcon(null);
-			try {
-				gImage = ImageIO.read(new File("forest_cliff.jpg"));
-			} catch (IOException e) {
-				System.out.println("Check the Image SHIT!");
-			}
-			gImage = gImage.getScaledInstance(200, 300, 5);
-			iL.setIcon(new ImageIcon(gImage));
-			iPanel.add(iL);
-			westBlock.add(iPanel, BorderLayout.NORTH);
-			revalidate();
-			repaint();
-			
 			gText.setText("");
 			gText.append("\n"+"\n");
 			String str = "";
@@ -493,22 +477,6 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 		}
 		else if(subBoss){
-			//Hollow Tree Image
-			westBlock.remove(iPanel);
-			iPanel.removeAll();
-			iL.setIcon(null);
-			try {
-				gImage = ImageIO.read(new File("hollow_tree.jpg"));
-			} catch (IOException e) {
-				System.out.println("Check the Image SHIT!");
-			}
-			gImage = gImage.getScaledInstance(200, 300, 5);
-			iL.setIcon(new ImageIcon(gImage));
-			iPanel.add(iL);
-			westBlock.add(iPanel, BorderLayout.NORTH);
-			revalidate();
-			repaint();
-			
 			gText.setText("");
 			String str = "";
 			Scanner reader = new Scanner(new File("Lair of Shadows ForestBossZone Hollow Tree.txt"));
@@ -548,22 +516,6 @@ public class Gam_alt extends JFrame {
 	
 	//Main play area for the Swamp zone
 	public void swampZone() throws IOException{
-		//Lake Image
-		westBlock.remove(iPanel);
-		iPanel.removeAll();
-		iL.setIcon(null);
-		try {
-			gImage = ImageIO.read(new File("swamp_lake.jpg"));
-		} catch (IOException e) {
-			System.out.println("Check the Image SHIT!");
-		}
-		gImage = gImage.getScaledInstance(200, 300, 5);
-		iL.setIcon(new ImageIcon(gImage));
-		iPanel.add(iL);
-		westBlock.add(iPanel, BorderLayout.NORTH);
-		revalidate();
-		repaint();
-		
 		if (subzone1){
 			gText.append("\n"+"\n");
 			String str = "";
@@ -576,22 +528,6 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 		}
 		else if(subzone2){
-			//Dry patch Image
-			westBlock.remove(iPanel);
-			iPanel.removeAll();
-			iL.setIcon(null);
-			try {
-				gImage = ImageIO.read(new File("swamp_dry_patch.jpg"));
-			} catch (IOException e) {
-				System.out.println("Check the Image SHIT!");
-			}
-			gImage = gImage.getScaledInstance(200, 300, 5);
-			iL.setIcon(new ImageIcon(gImage));
-			iPanel.add(iL);
-			westBlock.add(iPanel, BorderLayout.NORTH);
-			revalidate();
-			repaint();
-			
 			gText.setText("");
 			String str = "";
 			Scanner reader = new Scanner(new File("Lair of Shadows SwampSubZone Dry Patch.txt"));
@@ -603,22 +539,6 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 		}
 		else if(subBoss){
-			//Vine Covered Mass Image
-			westBlock.remove(iPanel);
-			iPanel.removeAll();
-			iL.setIcon(null);
-			try {
-				gImage = ImageIO.read(new File("swamp_vine_mass.jpg"));
-			} catch (IOException e) {
-				System.out.println("Check the Image SHIT!");
-			}
-			gImage = gImage.getScaledInstance(200, 300, 5);
-			iL.setIcon(new ImageIcon(gImage));
-			iPanel.add(iL);
-			westBlock.add(iPanel, BorderLayout.NORTH);
-			revalidate();
-			repaint();
-			
 			gText.setText("");
 			String str = "";
 			Scanner reader = new Scanner(new File("Lair of Shadows SwampBossZone Vine Covered Mass.txt"));
@@ -1132,22 +1052,6 @@ public class Gam_alt extends JFrame {
 	}
 	
 	public void createDesertSubBoss(){
-		//Desert Sub Boss Image
-		westBlock.remove(iPanel);
-		iPanel.removeAll();
-		iL.setIcon(null);
-		try {
-			gImage = ImageIO.read(new File("cerberus.jpg"));
-		} catch (IOException e) {
-			System.out.println("Check the Image SHIT!");
-		}
-		gImage = gImage.getScaledInstance(200, 300, 5);
-		iL.setIcon(new ImageIcon(gImage));
-		iPanel.add(iL);
-		westBlock.add(iPanel, BorderLayout.NORTH);
-		revalidate();
-		repaint();
-		
 		subFight=true;
 		int botHealth = ((player.getHealth()*90)/100);
 		int botDefense = ((player.getDefense()*90)/100);
@@ -1157,22 +1061,6 @@ public class Gam_alt extends JFrame {
 	}
 
 	public void createForestSubBoss(){
-		//Forest Sub Boss Image
-		westBlock.remove(iPanel);
-		iPanel.removeAll();
-		iL.setIcon(null);
-		try {
-			gImage = ImageIO.read(new File("hermes.jpg"));
-		} catch (IOException e) {
-			System.out.println("Check the Image SHIT!");
-		}
-		gImage = gImage.getScaledInstance(200, 300, 5);
-		iL.setIcon(new ImageIcon(gImage));
-		iPanel.add(iL);
-		westBlock.add(iPanel, BorderLayout.NORTH);
-		revalidate();
-		repaint();
-		
 		subFight=true;
 		int botHealth = ((player.getHealth()*90)/100);
 		int botDefense = ((player.getDefense()*90)/100);
@@ -1182,22 +1070,6 @@ public class Gam_alt extends JFrame {
 	}
 	
 	public void createSwampSubBoss(){
-		//Swamp Sub Boss Image
-		westBlock.remove(iPanel);
-		iPanel.removeAll();
-		iL.setIcon(null);
-		try {
-			gImage = ImageIO.read(new File("medusa.jpg"));
-		} catch (IOException e) {
-			System.out.println("Check the Image SHIT!");
-		}
-		gImage = gImage.getScaledInstance(200, 300, 5);
-		iL.setIcon(new ImageIcon(gImage));
-		iPanel.add(iL);
-		westBlock.add(iPanel, BorderLayout.NORTH);
-		revalidate();
-		repaint();
-		
 		subFight=true;
 		int botHealth = ((player.getHealth()*90)/100);
 		int botDefense = ((player.getDefense()*90)/100);
@@ -1207,22 +1079,6 @@ public class Gam_alt extends JFrame {
 	}
 	
 	public void createFinalBoss(){
-		//Final Boss Image
-		westBlock.remove(iPanel);
-		iPanel.removeAll();
-		iL.setIcon(null);
-		try {
-			gImage = ImageIO.read(new File("mastermind.jpg"));
-		} catch (IOException e) {
-			System.out.println("Check the Image SHIT!");
-		}
-		gImage = gImage.getScaledInstance(200, 300, 5);
-		iL.setIcon(new ImageIcon(gImage));
-		iPanel.add(iL);
-		westBlock.add(iPanel, BorderLayout.NORTH);
-		revalidate();
-		repaint();
-		
 		//Dialogue
 		gText.append("\n");
 		gText.append("The Boss:"+"\n");

@@ -1137,7 +1137,7 @@ public class Gam_alt extends JFrame {
 		iPanel.removeAll();
 		iL.setIcon(null);
 		try {
-			gImage = ImageIO.read(new File("cerberus.jpg"));
+			gImage = ImageIO.read(new File("dunes.jpg"));
 		} catch (IOException e) {
 			System.out.println("Check the Image SHIT!");
 		}

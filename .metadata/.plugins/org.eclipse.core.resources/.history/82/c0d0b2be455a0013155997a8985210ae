@@ -31,7 +31,7 @@ public class Player {
 	public void setDefense(int d){this.Defense = d;}
 	
 	//Look more into this
-	public void calculateLevel(){this.Level=(this.XP/(100));}
+	public void calculateLevel(){this.Level=(this.XP/(20));}
 		
 	//Used for game events
 	public int getHealth(){return new Integer(Health);}
