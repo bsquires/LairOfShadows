@@ -6,7 +6,7 @@ public class Mage extends Player {
 		this.AttackForce=20;
 		this.Defense=10;
 		this.Mana=200; //place holder
-		this.Level=1;
+		this.Level=0;
 		this.XP=0;
 	}
 	

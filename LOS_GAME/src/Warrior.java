@@ -7,7 +7,7 @@ public class Warrior extends Player {
 		this.AttackForce=10;
 		this.Defense=30;
 		this.Focus=100; //place holder
-		this.Level=1;
+		this.Level=0;
 		this.XP=0;
 	}
 	

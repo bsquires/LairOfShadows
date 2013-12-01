@@ -16,6 +16,7 @@ public class Gam_alt extends JFrame {
 	int currentDefense;
 	int currentSpecialStat;
 	int currentLevel;
+	int fightRound=0;
 	boolean subFight=false;
 	boolean desert = true;
 	boolean forest = true;
@@ -32,8 +33,6 @@ public class Gam_alt extends JFrame {
 	Randomizer Bob_the_AI=new Randomizer();
 	Player player = null;
 	Player Enemy=null;
-	Player zoneSubBoss=null;
-	Player theBoss=null;
 	Image gImage = null;
 	JPanel InitScreen = new JPanel();
 	JPanel ClassChoiceScreen = new JPanel();
@@ -294,8 +293,22 @@ public class Gam_alt extends JFrame {
 		dirButtonPanel = new directionPanel(desert, forest, swamp);
 		westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
 		gamePlay.add(westBlock, BorderLayout.WEST);
+		gamePlay.setPreferredSize(new Dimension(200, 500));
+
+		this.setContentPane(gamePlay);
+		this.revalidate();
+		this.repaint();
 		}
 		else{
+			dirButtonPanel=new JPanel();
+			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
+			gamePlay.add(westBlock, BorderLayout.WEST);
+			gamePlay.setPreferredSize(new Dimension(200, 500));
+
+			this.setContentPane(gamePlay);
+			this.revalidate();
+			this.repaint();
+			
 			File finalOpen = new File("Lair of Shadows Story Lair of Shadows.txt");
 			fileReader = new FileReader(finalOpen);
 			gText.read(fileReader, finalOpen.toString());
@@ -307,15 +320,8 @@ public class Gam_alt extends JFrame {
 				gText.append(str);
 				gText.append("\n");
 			}
-			launchEvent();
 			createFinalBoss();
 		}
-		gamePlay.setPreferredSize(new Dimension(200, 500));
-
-		this.setContentPane(gamePlay);
-		this.revalidate();
-		this.repaint();
-
 	}
 	
 	//Main play area for the Desert zone
@@ -333,7 +339,7 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 		}
 		else if(subzone2){
-			gText.append("\n"+"\n");
+			gText.setText("");
 			String str = "";
 			Scanner reader = new Scanner(new File("Lair of Shadows DesertSubZone Canyon.txt"));
 			while (reader.hasNext()){
@@ -344,7 +350,7 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 		}
 		else if(subBoss){
-			gText.append("\n"+"\n");
+			gText.setText("");
 			String str = "";
 			Scanner reader = new Scanner(new File("Lair of Shadows DesertBossZone Mountains.txt"));
 			while (reader.hasNext()){
@@ -352,6 +358,7 @@ public class Gam_alt extends JFrame {
 				gText.append(str);
 				gText.append("\n");
 			}
+			gText.append("\n");
 			reader=new Scanner(new File("Lair of Shadows Story Enemy Warrior Cerberus.txt"));
 			while (reader.hasNext()){
 				str = reader.nextLine();	
@@ -367,6 +374,15 @@ public class Gam_alt extends JFrame {
 			subzone2=true;
 			subBoss=true;
 			subFight=false;
+			
+			//Clearing out the western block
+			westBlock.removeAll();
+			dirButtonPanel.removeAll();
+			statPanel.removeAll();
+			iPanel.removeAll();
+			revalidate();
+			repaint();
+			
 			launchGame(playerType);	
 		}
 	}
@@ -385,6 +401,7 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 		}
 		else if(subzone2){
+			gText.setText("");
 			gText.append("\n"+"\n");
 			String str = "";
 			Scanner reader = new Scanner(new File("Lair of Shadows ForestSubZone Cliff.txt"));
@@ -396,7 +413,7 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 		}
 		else if(subBoss){
-			gText.append("\n"+"\n");
+			gText.setText("");
 			String str = "";
 			Scanner reader = new Scanner(new File("Lair of Shadows ForestBossZone Hollow Tree.txt"));
 			while (reader.hasNext()){
@@ -404,6 +421,7 @@ public class Gam_alt extends JFrame {
 				gText.append(str);
 				gText.append("\n");
 			}
+			gText.append("\n");
 			reader=new Scanner(new File("Lair of Shadows Story Enemy Rogue Hermes.txt"));
 			while (reader.hasNext()){
 				str = reader.nextLine();	
@@ -419,6 +437,15 @@ public class Gam_alt extends JFrame {
 			subzone2=true;
 			subBoss=true;
 			subFight=false;
+			
+			//Clearing out the western block
+			westBlock.removeAll();
+			dirButtonPanel.removeAll();
+			statPanel.removeAll();
+			iPanel.removeAll();
+			revalidate();
+			repaint();
+			
 			launchGame(playerType);
 		}
 	}
@@ -437,7 +464,7 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 		}
 		else if(subzone2){
-			gText.append("\n"+"\n");
+			gText.setText("");
 			String str = "";
 			Scanner reader = new Scanner(new File("Lair of Shadows SwampSubZone Dry Patch.txt"));
 			while (reader.hasNext()){
@@ -448,7 +475,7 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 		}
 		else if(subBoss){
-			gText.append("\n"+"\n");
+			gText.setText("");
 			String str = "";
 			Scanner reader = new Scanner(new File("Lair of Shadows SwampBossZone Vine Covered Mass.txt"));
 			while (reader.hasNext()){
@@ -456,6 +483,7 @@ public class Gam_alt extends JFrame {
 				gText.append(str);
 				gText.append("\n");
 			}
+			gText.append("\n");
 			reader=new Scanner(new File("Lair of Shadows Story Enemy Mage Medusa.txt"));
 			while (reader.hasNext()){
 				str = reader.nextLine();	
@@ -471,6 +499,15 @@ public class Gam_alt extends JFrame {
 			subzone2=true;
 			subBoss=true;
 			subFight=false;
+			
+			//Clearing out the western block
+			westBlock.removeAll();
+			dirButtonPanel.removeAll();
+			statPanel.removeAll();
+			iPanel.removeAll();
+			revalidate();
+			repaint();
+			
 			launchGame(playerType);	
 		}
 	}
@@ -513,6 +550,7 @@ public class Gam_alt extends JFrame {
 		{
 		case 0:
 			gText.append("You met a farmer who would like you to stay for Dinner.");
+			gText.append("\n");
 			player.adjHealth( (int) (player.getHealth()*.05));
 			currentHealth=player.getHealth();
 			currentAttackForce=player.getAttackForce();
@@ -538,6 +576,7 @@ public class Gam_alt extends JFrame {
 		case 1:
 			gText.append("A troll snuck into your camp over night"+"\n"
 					+"and blunted your weapon!");
+			gText.append("\n");
 			player.adjAttackForce((int) (player.getAttackForce()*.05)*-1);
 			currentHealth=player.getHealth();
 			currentAttackForce=player.getAttackForce();
@@ -562,6 +601,7 @@ public class Gam_alt extends JFrame {
 			break;
 		case 2:
 			gText.append("You found a health potion hidden behind a rock");
+			gText.append("\n");
 			player.adjHealth( (int) (player.getHealth()*.10));
 			currentHealth=player.getHealth();
 			currentAttackForce=player.getAttackForce();
@@ -585,8 +625,9 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 			break;
 		case 3:
-			gText.append("A local armorer has heard tales of your struggle and wants to help."
+			gText.append("A local armorer has heard tales of your struggle"+"\n"+"and wants to help."
 					+ "\n" + "He fine tunes your weapon!");
+			gText.append("\n");
 			player.adjAttackForce((int) (player.getAttackForce()*.03));
 			currentHealth=player.getHealth();
 			currentAttackForce=player.getAttackForce();
@@ -612,6 +653,7 @@ public class Gam_alt extends JFrame {
 		case 4:
 			gText.append("You find and eat some bad mushrooms. " +
 					"\n"+"You fall and ill and your Defense falls as a result");
+			gText.append("\n");
 			player.adjDefense((int) (player.getDefense()*.05)*-1);
 			currentHealth=player.getHealth();
 			currentAttackForce=player.getAttackForce();
@@ -637,6 +679,7 @@ public class Gam_alt extends JFrame {
 		case 5:
 			gText.append("Ralph the shield maker upgrades your " +
 					"\n"+"defensive equipment in exchange for pint of local ale!");
+			gText.append("\n");
 			player.adjDefense((int) (player.getDefense()*.05));
 			currentHealth=player.getHealth();
 			currentAttackForce=player.getAttackForce();
@@ -661,6 +704,7 @@ public class Gam_alt extends JFrame {
 			break;
 		case 6:
 			gText.append("A fairy appears out of nowhere and heals your wounds!");
+			gText.append("\n");
 			player.adjHealth( (int) (player.getHealth()*.025));
 			currentHealth=player.getHealth();
 			currentAttackForce=player.getAttackForce();
@@ -684,7 +728,8 @@ public class Gam_alt extends JFrame {
 			launchEvent();
 			break;
 		case 7: 
-			gText.append("A satyr at play throws a rock at your head while you sleep! Ouch!");
+			gText.append("A satyr at play throws a rock at your head while you sleep!"+"\n"+"Ouch!");
+			gText.append("\n");
 			player.adjHealth( (int) (player.getHealth()*.05)*-1);
 			currentHealth=player.getHealth();
 			currentAttackForce=player.getAttackForce();
@@ -716,13 +761,13 @@ public class Gam_alt extends JFrame {
 	public void createEnemy(){
 		int e = Randomizer.randomize(0, 2);
 		//Generate a Randomizer.random multiple between 25% and 100%
-		int botStatsMultiplier = Randomizer.randomize(25, 75)/100;
+		double botStatsMultiplier =(double) Randomizer.randomize(25, 75)/100;
 		
 		//The bot stats will be used as the initial stats for our bots
 		//created by the following switch statement.
-		int botHealth = botStatsMultiplier*player.getHealth();
-		int botDefense = botStatsMultiplier*player.getDefense();
-		int botAttackForce = botStatsMultiplier*player.getAttackForce();
+		int botHealth =(int) (botStatsMultiplier*player.getHealth());
+		int botDefense = (int)(botStatsMultiplier*player.getDefense());
+		int botAttackForce =(int) (botStatsMultiplier*player.getAttackForce());
 		
 		switch(e){
 		case 0:
@@ -753,22 +798,30 @@ public class Gam_alt extends JFrame {
 	
 	//Combat panel
 	public void launchCombat(){
+		westBlock.remove(dirButtonPanel);
+		dirButtonPanel.removeAll();
 		switch(playerType){
 		case 'w':
 			dirButtonPanel=new warriorPanel(currentSpecialStat);
 			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
+			dirButtonPanel.revalidate();
+			dirButtonPanel.repaint();
 			revalidate();
 			repaint();
 			break;
 		case 'm':
 			dirButtonPanel=new magePanel(currentSpecialStat);
 			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
+			dirButtonPanel.revalidate();
+			dirButtonPanel.repaint();
 			revalidate();
 			repaint();
 			break;
 		case 'r':
 			dirButtonPanel=new roguePanel(currentSpecialStat);
 			westBlock.add(dirButtonPanel, BorderLayout.SOUTH);
+			dirButtonPanel.revalidate();
+			dirButtonPanel.repaint();
 			revalidate();
 			repaint();
 			break;
@@ -783,102 +836,123 @@ public class Gam_alt extends JFrame {
 		switch(playerType){
 		case 'w':
 			if (attackType.equals("Basic Attack")){
-				pDamage = (player.getAttackForce() * Randomizer.randomize(50, 100)/100) 
-						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+				pDamage =(int)((((double)player.getAttackForce())*((double) Randomizer.randomize(80, 150)/100))
+						-(((double)Enemy.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 			}
 			else if(attackType.equals("Power Strike")){
-				pDamage = (player.getAttackForce() * Randomizer.randomize(90, 120)/100) 
-						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+				pDamage = (int)((((double)player.getAttackForce())*((double) Randomizer.randomize(125, 200)/100))
+						-(((double)Enemy.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 				currentSpecialStat-= 10;
 			}
 			else if(attackType.equals("Block")){
-				Enemy.setDefense(Enemy.getDefense() * Randomizer.randomize(5, 20)/100);
+				currentDefense+=(int)(((double)player.getDefense())*((double) Randomizer.randomize(25, 50)/100));
+				Enemy.setDefense((int)(Enemy.getDefense() * (((double)(Randomizer.randomize(5, 20)))/100)));
 				currentSpecialStat-= 10;
 			}
 			break;
 		case 'r':
 			if (attackType.equals("Basic Attack")){
-				pDamage = (player.getAttackForce() * Randomizer.randomize(50, 100)/100)
-						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+				pDamage =(int)((((double)player.getAttackForce())*((double) Randomizer.randomize(80, 150)/100))
+						-(((double)Enemy.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 			}
 			else if(attackType.equals("Critical Strike")){
-				pDamage = (player.getAttackForce() * Randomizer.randomize(90, 120)/100) 
-						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+				pDamage = (int)((((double)player.getAttackForce())*((double) Randomizer.randomize(125, 200)/100))
+						-(((double)Enemy.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 				currentSpecialStat-= 10;
 			}
 			else if(attackType.equals("Disarm")){
-				Enemy.setAttackForce(Enemy.getAttackForce() * Randomizer.randomize(5, 20)/100);
+				Enemy.setAttackForce((int)(((double)Enemy.getAttackForce())*((double) Randomizer.randomize(20, 50)/100)));
 				currentSpecialStat-= 10;
 			}
 			break;
 		case 'm':
 			if (attackType.equals("Basic Attack")){
-				pDamage = (player.getAttackForce() * Randomizer.randomize(50, 100)/100)
-						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+				pDamage = (int)((((double)player.getAttackForce())*((double) Randomizer.randomize(80, 150)/100))
+						-(((double)Enemy.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 			}
 			else if(attackType.equals("Cast")){
-				pDamage = (player.getAttackForce() * Randomizer.randomize(90, 120)/100) 
-						- (Enemy.getDefense() * Randomizer.randomize(80, 100)/100);
+				pDamage = (int)((((double)player.getAttackForce())*((double) Randomizer.randomize(125, 200)/100))
+						-(((double)Enemy.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 				currentSpecialStat-= 10;
 			}
 			else if(attackType.equals("Heal")){
-				currentHealth+=(Enemy.getHealth() * Randomizer.randomize(25, 60)/100);
+				currentHealth+=((int)(((double)player.getHealth())+((double) Randomizer.randomize(25, 75)/100)));
 				currentSpecialStat-= 10;
 			}
 			break;
 		default:
 			System.out.println("Combat Error!");
 		}
+		gText.append("\n");
 		//Enemy attack
-		int eAtx=Randomizer.randomize(0, 1);
+		int eAtx;
+		if(fightRound>=5){
+			eAtx=0;
+		}
+		else{
+			eAtx=Randomizer.randomize(0, 1);
+		}
 		switch(enemyType){
 		case 'w':
 			if (eAtx==0){
 				gText.append("Enemy launches his basic attack!\n");
-				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(50, 100)/100)
-						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+				eDamage=(int)((((double)Enemy.getAttackForce())*((double) Randomizer.randomize(80, 150)/100))
+						-(((double)player.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 			}
 			else if(eAtx==1){
 				gText.append("Enemy launches Power Strike!\n");
-				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(90, 120)/100) 
-						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+				eDamage=(int)((((double)Enemy.getAttackForce())*((double) Randomizer.randomize(125, 200)/100))
+						-(((double)player.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 			}
 			break;
 		case 'r':
 			if (eAtx==0){
 				gText.append("Enemy launches his basic attack!\n");
-				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(50, 100)/100)
-						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+				eDamage=(int)((((double)Enemy.getAttackForce())*((double) Randomizer.randomize(80, 150)/100))
+						-(((double)player.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 			}
 			else if(eAtx==1){
 				gText.append("Enemy launches Critical Strike!\n");
-				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(90, 120)/100) 
-						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+				eDamage=(int)((((double)Enemy.getAttackForce())*((double) Randomizer.randomize(125, 200)/100))
+						-(((double)player.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 			}
 			break;
 		case 'm':
 			if (eAtx==0){
 				gText.append("Enemy launches his basic attack!\n");
-				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(50, 100)/100)
-						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+				eDamage=(int)((((double)Enemy.getAttackForce())*((double) Randomizer.randomize(80, 150)/100))
+						-(((double)player.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 			}
 			else if(eAtx==1){
 				gText.append("Enemy casts a spell!\n");
-				eDamage=(Enemy.getAttackForce() * Randomizer.randomize(90, 120)/100) 
-						- (player.getDefense() * Randomizer.randomize(80, 100)/100);
+				eDamage=(int)((((double)Enemy.getAttackForce())*((double) Randomizer.randomize(125, 200)/100))
+						-(((double)player.getDefense())*((double) Randomizer.randomize(20, 50)/100)));
 			}
 			break;
 		default:
 			System.out.println("Combat Error!");
 		}
 		
+		if(pDamage<0){
+			Enemy.adjHealth(pDamage);
+		}
+		else{
+			Enemy.adjHealth((-1*pDamage));
+		}
 		
+		if(eDamage<0){
+			currentHealth+=eDamage;
+		}
+		else{
+			currentHealth-=eDamage;
+		}
 		
-		Enemy.adjHealth((-1*pDamage));
-		currentHealth-=eDamage;
 		gText.append("Your Health: "+currentHealth+" Enemy Health: "+Enemy.getHealth()+"\n");
 		
 		if(Enemy.getHealth()<=0){
+			fightRound=0;
+			gText.setText("");
+			gText.append("Enemy Terminated!\n");
 			if(BossFight){
 				Victory();
 			}
@@ -908,11 +982,13 @@ public class Gam_alt extends JFrame {
 			GameOver();
 		}
 		else{
+			fightRound++;
 			launchCombat();
 		}
 	}
 	
 	public void createDesertSubBoss(){
+		subFight=true;
 		int botHealth = ((player.getHealth()*90)/100);
 		int botDefense = ((player.getDefense()*90)/100);
 		int botAttackForce = ((player.getAttackForce()*90)/100);
@@ -921,13 +997,16 @@ public class Gam_alt extends JFrame {
 	}
 
 	public void createForestSubBoss(){
+		subFight=true;
 		int botHealth = ((player.getHealth()*90)/100);
 		int botDefense = ((player.getDefense()*90)/100);
 		int botAttackForce = ((player.getAttackForce()*90)/100);
 		Enemy=new Rogue(botHealth, botAttackForce, botDefense, botHealth);
 		launchCombat();
 	}
+	
 	public void createSwampSubBoss(){
+		subFight=true;
 		int botHealth = ((player.getHealth()*90)/100);
 		int botDefense = ((player.getDefense()*90)/100);
 		int botAttackForce = ((player.getAttackForce()*90)/100);
@@ -936,12 +1015,26 @@ public class Gam_alt extends JFrame {
 	}
 	
 	public void createFinalBoss(){
+		//Dialogue
+		gText.append("\n");
+		gText.append("The Boss:"+"\n");
+		gText.append("There is no way you can save the world!"+"\n");
+		gText.append("For you must kill me first!"+"\n");
+		gText.append("\n");
+		gText.append("Player: Challenge Accepted."+"\n");
+		gText.append("\n");
+		gText.append("The Boss: Don't you understand you FOOL! " +"\n"+
+				"YOU WILL DIE!"+"\n");
+		gText.append("\n");
+		gText.append("Player: Life is cheap. Especially mine."+"\n");
+		
 		//Create a boss bot that is a mirror of the player		
 		int botHealth = player.getHealth();		
 		int botDefense =player.getDefense();
 		int botAttackForce = player.getAttackForce();
 		Enemy = new Warrior(botHealth, botAttackForce, botDefense, botHealth);
 		//The boss and the player fight until one are dead
+		enemyType='w';
 		BossFight=true;
 		launchCombat();
 	}
@@ -978,32 +1071,19 @@ public class Gam_alt extends JFrame {
 	public void Victory(){
 		this.getContentPane().removeAll();
 		
-		JPanel victoryText = new JPanel();
-		victoryText.setLayout(new GridLayout(2, 1, 1, 1));
+		JTextArea victoryText = new JTextArea();
 		victoryText.setForeground(Color.green);
 		victoryText.setBackground(Color.black);
-
-		JLabel cName = new JLabel("VICTORY!");
-		cName.setFont(new Font("Helevetica", Font.BOLD, 60));
-		cName.setForeground(Color.green);
-		cName.setBackground(Color.black);
-		cName.setHorizontalAlignment(SwingConstants.CENTER);
-
-		JLabel pName = new JLabel("YOU HAVE SAVED THE WORLD!");
-		pName.setFont(new Font("Helevetica", Font.BOLD, 60));
-		pName.setForeground(Color.green);
-		pName.setBackground(Color.black);
-		pName.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		victoryText.add(cName);
-		victoryText.add(pName);
+		victoryText.setFont(new Font("Helevetica", Font.BOLD, 60));
+		victoryText.append("VICTORY!\n");
+		victoryText.append("YOU HAVE SAVED\n");
+		victoryText.append("THE WORLD!\n");
 		victoryText.setPreferredSize(new Dimension(700, 500));
 		
 		this.setContentPane(victoryText);
 		this.revalidate();
 		this.repaint();
 	}
-	
 	
 	public void levelCheck() throws IOException{
 		player.calculateLevel();

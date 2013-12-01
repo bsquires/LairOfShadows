@@ -2,8 +2,8 @@
 public class Combat {
 	Player player1;
 	Player bot;
-	String class_type = "";
-	String bot_class_type = "";
+	char class_type;
+	char bot_class_type;
 	
 	public Combat(Player player1, Player bot)
 	{
@@ -11,13 +11,13 @@ public class Combat {
 		this.bot = bot;
 		
 		//determine the player class
-		if(player1 instanceof Rogue){class_type = "rogue";}
-		if(player1 instanceof Warrior){class_type = "warrior";}
-		if(player1 instanceof Mage){class_type = "mage";}
+		if(player1 instanceof Rogue){class_type = 'r';}
+		if(player1 instanceof Warrior){class_type = 'w';}
+		if(player1 instanceof Mage){class_type = 'm';}
 		
-		if(bot instanceof Rogue){bot_class_type = "rogue";}
-		if(bot instanceof Warrior){bot_class_type = "warrior";}
-		if(bot instanceof Mage){bot_class_type = "mage";}
+		if(bot instanceof Rogue){bot_class_type = 'r';}
+		if(bot instanceof Warrior){bot_class_type = 'w';}
+		if(bot instanceof Mage){bot_class_type = 'm';}
 	}
 	
 	public void fighting()
@@ -32,15 +32,15 @@ public class Combat {
 		int initialSpecial = 0;
 			switch(class_type)
 			{
-			case "rogue":
+			case 'r':
 				initialSpecial = ((Rogue) player1).getAgility();
 				break;
 				
-			case "warrior":
+			case 'w':
 				initialSpecial = ((Warrior) player1).getFocus();
 				break;
 				
-			case "mage":
+			case 'm':
 				initialSpecial = ((Mage) player1).getMana();
 				break;
 			}//end switch
@@ -59,16 +59,16 @@ public class Combat {
 				System.out.println("YOUR TURN!");
 				switch(class_type)
 				{
-				case "rogue":
-					((Rogue) player1).rogueFightMenu(bot, false);
+				case 'r':
+					//((Rogue) player1).rogueFightMenu(bot, false);
 					break;
 					
-				case "warrior":
-					((Warrior) player1).warriorFightMenu(bot, false);
+				case 'w':
+					//((Warrior) player1).warriorFightMenu(bot, false);
 					break;
 					
-				case "mage":
-					((Mage) player1).mageFightMenu(bot, false);
+				case 'm':
+					//((Mage) player1).mageFightMenu(bot, false);
 					break;
 				}//end switch
 
@@ -81,16 +81,16 @@ public class Combat {
 				System.out.println("It's the enemy's turn!");
 			switch(bot_class_type)
 			{
-			case "rogue":
-				((Rogue) player1).rogueFightMenu(player1, true);
+			case 'r':
+				//((Rogue) player1).rogueFightMenu(player1, true);
 				break;
 				
-			case "warrior":
-				((Warrior) player1).warriorFightMenu(player1, true);
+			case 'w':
+				//((Warrior) player1).warriorFightMenu(player1, true);
 				break;
 				
-			case "mage":
-				((Mage) player1).mageFightMenu(player1, true);
+			case 'm':
+				//((Mage) player1).mageFightMenu(player1, true);
 				break;
 				
 				default:
@@ -115,47 +115,47 @@ public class Combat {
 		
 			switch(class_type)
 			{
-			case "rogue":
+			case 'r':
 				((Rogue) player1).setAgility(initialSpecial);
 				break;
 				
-			case "warrior":
+			case 'w':
 				((Warrior) player1).setFocus(initialSpecial);
 				break;
 				
-			case "mage":
+			case 'm':
 				((Mage) player1).setMana(initialSpecial);
 				break;
 			}//end switch
 		
 		
-		//do not increase the experience if player1 ran away
+		/*do not increase the experience if player1 ran away
 		if (player1.getRanAway()==true)
 		{
 			player1.adjRanAway(false);
 			return;
 
 		}
-		
+		*/
 		//increase the experience level
 		player1.incXP(XP);
 		
 		//Check to see if the player leveled
 		int curLevel = player1.getLevel();
-		player1.checkLevel();
+		//player1.checkLevel();
 		if(curLevel<player1.getLevel())
 		{
 			switch(class_type)
 			{
-			case "rogue":
+			case 'r':
 				((Rogue) player1).levelUp();
 				break;
 				
-			case "warrior":
+			case 'w':
 				((Warrior) player1).levelUp();
 				break;
 				
-			case "mage":
+			case 'm':
 				((Mage) player1).levelUp();
 				break;
 			}//end switch
