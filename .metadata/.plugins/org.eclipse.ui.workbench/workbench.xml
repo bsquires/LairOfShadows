@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="16" version="2.0">
+<workbench progressCount="15" version="2.0">
 <workbenchAdvisor/>
-<window height="728" maximized="true" width="683" x="0" y="0">
+<window height="728" maximized="true" width="1024" x="150" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -17,11 +17,12 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
-<page aggregateWorkingSetId="Aggregate for window 1385172594541" focus="true" label="Workspace - Java">
+<page aggregateWorkingSetId="Aggregate for window 1386719498398" focus="true" label="Workspace - Java">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
@@ -29,29 +30,25 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
-<part id="2"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Gam_alt.java" partName="Gam_alt.java" path="C:/Users/EAL/Documents/GitHub/LairOfShadows/LOS_GAME/src/Gam_alt.java" title="Gam_alt.java" tooltip="LOS_GAME/src/Gam_alt.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/LOS_GAME/src/Gam_alt.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="35437" selectionTopPixel="1223"/>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GTester.java" partName="GTester.java" path="C:/Users/EAL/Documents/GitHub/LairOfShadows/LOS_GAME/src/theLairOfShadowsGame/GTester.java" title="GTester.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/GTester.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/LOS_GAME/src/theLairOfShadowsGame/GTester.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="402" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GTester.java" partName="GTester.java" path="C:/Users/EAL/Documents/GitHub/LairOfShadows/LOS_GAME/src/GTester.java" title="GTester.java" tooltip="LOS_GAME/src/GTester.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/LOS_GAME/src/GTester.java"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Game_alt.java" partName="Game_alt.java" path="C:/Users/EAL/Documents/GitHub/LairOfShadows/LOS_GAME/src/theLairOfShadowsGame/Game_alt.java" title="Game_alt.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Game_alt.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/LOS_GAME/src/theLairOfShadowsGame/Game_alt.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" partName="Player.java" path="C:/Users/EAL/Documents/GitHub/LairOfShadows/LOS_GAME/src/Player.java" title="Player.java" tooltip="LOS_GAME/src/Player.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/LOS_GAME/src/Player.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1031" selectionTopPixel="270"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (24 items)"/>
+<category IMemento.internal.id="Warnings (1 item)"/>
+<category IMemento.internal.id="Errors"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -65,7 +62,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
-<viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="Aggregate for window 1385172594541">
+<viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="Aggregate for window 1386719498398">
 <customFilters userDefinedPatternsEnabled="false">
 <xmlDefinedFilters>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
@@ -96,11 +93,17 @@
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
 </view>
-<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
-<view id="diagramTable" partName="Diagrams"/>
-<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
+<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration">
+<viewState/>
+</view>
+<view id="diagramTable" partName="Diagrams">
+<viewState/>
+</view>
+<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc">
+<viewState/>
+</view>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -150,12 +153,12 @@
 <perspective_action id="org.eclipse.debug.ui.DebugPerspective"/>
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
-<view id="org.eclipse.jdt.ui.PackageExplorer"/>
 <view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
-<view id="diagramTable"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="diagramTable"/>
+<view id="org.eclipse.jdt.ui.PackageExplorer"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
 <layout>
@@ -172,7 +175,7 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@6ec45c0e" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="left">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@6e7dc5aa" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="left">
 <folder appearance="2" expanded="2">
 <page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
@@ -181,7 +184,7 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.25" ratioLeft="250" ratioRight="750" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.7419355" ratioLeft="460" ratioRight="160" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottom" ratio="0.74958813" ratioLeft="455" ratioRight="152" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
@@ -217,160 +220,161 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/LOS_GAME/src/Gam_alt.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/LOS_GAME/src/GTester.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/LOS_GAME/src/Player.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/LOS_GAME/src/GTester.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/LOS_GAME/src/theLairOfShadowsGame/Game_alt.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/LOS_GAME/src/theLairOfShadowsGame/GTester.java"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=LOS_GAME/C:\/Program Files\/Java\/jdk1.7.0_13\/jre\/lib\/rt.jar&lt;java.lang(AbstractStringBuilder.class"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=LOS_GAME/C:\/Program Files\/Java\/jdk1.7.0_13\/jre\/lib\/rt.jar&lt;java.util(Arrays.class"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=LOS_GAME/C:\/Program Files\/Java\/jdk1.7.0_13\/jre\/lib\/rt.jar&lt;java.lang(StringBuilder.class"/>
 </editors>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="11127" y="0"/>
+<item historyLabel="GTester.java" index="1">
+<position info="not_deleted" x="31" y="0"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="12011" y="0"/>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="33" y="1"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="12013" y="0"/>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="5682" y="0"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="13653" y="0"/>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="5536" y="28"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="15253" y="0"/>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="5682" y="0"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="827" y="0"/>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="5569" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="5677" y="0"/>
 </item>
 <item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<position info="not_deleted" x="31" y="0"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="827" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="28433" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="28435" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="12602" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="12597" y="0"/>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="5677" y="0"/>
 </item>
 <item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<position info="not_deleted" x="4" y="0"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="31235" y="0"/>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="5677" y="0"/>
 </item>
-<item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="31235" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="32187" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="11018" y="0"/>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="5682" y="0"/>
 </item>
 <item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<position info="not_deleted" x="402" y="0"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="529" y="0"/>
+<item historyLabel="AbstractStringBuilder.class" index="2">
+<position info="not_deleted" x="3269" y="50"/>
 </item>
-<item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Arrays.class" index="3">
+<position info="not_deleted" x="104230" y="42"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="10984" y="0"/>
+<item historyLabel="AbstractStringBuilder.class" index="2">
+<position info="not_deleted" x="2724" y="44"/>
 </item>
-<item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="StringBuilder.class" index="4">
+<position info="not_deleted" x="4364" y="26"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="10984" y="0"/>
-</item>
-<item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="10984" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="33015" y="0"/>
-</item>
-<item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="33015" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
+<item historyLabel="Game_alt.java" index="0">
 <position/>
 </item>
 <item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<position info="not_deleted" x="402" y="0"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="30643" y="0"/>
-</item>
-<item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="31204" y="0"/>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="5674" y="0"/>
 </item>
 <item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<position info="not_deleted" x="402" y="0"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="31204" y="0"/>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="5673" y="0"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
+<item historyLabel="GTester.java" index="1">
+<position info="not_deleted" x="402" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="5673" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="12234" y="0"/>
+</item>
+<item historyLabel="GTester.java" index="1">
+<position info="not_deleted" x="402" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="12192" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="14468" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="16889" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="20094" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="20889" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="37805" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="38525" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="39240" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
 <position/>
 </item>
+<item historyLabel="Game_alt.java" index="0">
+<position/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="47357" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="47841" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="47691" y="12"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="37489" y="12"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="44952" y="12"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="46260" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="45478" y="13"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="32443" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="42913" y="10"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="42944" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
+<position info="not_deleted" x="56207" y="0"/>
+</item>
 <item historyLabel="GTester.java" index="1">
+<position info="not_deleted" x="402" y="0"/>
+</item>
+<item historyLabel="Game_alt.java" index="0">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="530" y="0"/>
-</item>
-<item historyLabel="GTester.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="530" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="11593" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="11228" y="0"/>
-</item>
-<item historyLabel="Player.java" index="2">
-<position info="not_deleted" x="1031" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="12779" y="0"/>
-</item>
-<item historyLabel="GTester.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="35437" y="0"/>
-</item>
-<item historyLabel="Player.java" index="2">
-<position info="not_deleted" x="1031" y="0"/>
-</item>
-<item active="true" historyLabel="Gam_alt.java" index="0">
-<position info="not_deleted" x="35437" y="0"/>
+<item active="true" historyLabel="GTester.java" index="1">
+<position info="not_deleted" x="402" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -378,6 +382,13 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="left"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="org.eclipse.ui.editorss"/>
+<trimItem IMemento.internal.id="right"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -389,44 +400,50 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" tooltip="LOS_GAME/src/Player.java">
-<persistable path="/LOS_GAME/src/Player.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Game_alt.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Game_alt.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/Game_alt.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Mage.java" tooltip="LOS_GAME/src/Mage.java">
-<persistable path="/LOS_GAME/src/Mage.java"/>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="StringBuilder.class" tooltip="java.lang.StringBuilder">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=LOS_GAME/C:\/Program Files\/Java\/jdk1.7.0_13\/jre\/lib\/rt.jar&lt;java.lang(StringBuilder.class"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Warrior.java" tooltip="LOS_GAME/src/Warrior.java">
-<persistable path="/LOS_GAME/src/Warrior.java"/>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Arrays.class" tooltip="java.util.Arrays">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=LOS_GAME/C:\/Program Files\/Java\/jdk1.7.0_13\/jre\/lib\/rt.jar&lt;java.util(Arrays.class"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Rogue.java" tooltip="LOS_GAME/src/Rogue.java">
-<persistable path="/LOS_GAME/src/Rogue.java"/>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="AbstractStringBuilder.class" tooltip="java.lang.AbstractStringBuilder">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=LOS_GAME/C:\/Program Files\/Java\/jdk1.7.0_13\/jre\/lib\/rt.jar&lt;java.lang(AbstractStringBuilder.class"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GTester.java" tooltip="LOS_GAME/src/GTester.java">
-<persistable path="/LOS_GAME/src/GTester.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weapon.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Weapon.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/Weapon.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Gam_alt.java" tooltip="LOS_GAME/src/Gam_alt.java">
-<persistable path="/LOS_GAME/src/Gam_alt.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Warrior.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Warrior.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/Warrior.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Combat.java" tooltip="LOS_GAME/src/Combat.java">
-<persistable path="/LOS_GAME/src/Combat.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Rogue.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Rogue.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/Rogue.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weapon.java" tooltip="LOS_GAME/src/Weapon.java">
-<persistable path="/LOS_GAME/src/Weapon.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Randomizer.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Randomizer.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/Randomizer.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Randomizer.java" tooltip="LOS_GAME/src/Randomizer.java">
-<persistable path="/LOS_GAME/src/Randomizer.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Player.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/Player.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Location.java" tooltip="LOS_GAME/src/Location.java">
-<persistable path="/LOS_GAME/src/Location.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Mage.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Mage.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/Mage.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Game.java" tooltip="LOS_GAME/src/Game.java">
-<persistable path="/LOS_GAME/src/Game.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Location.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Location.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/Location.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Game_Frame.java" tooltip="LOS_GAME/src/Game_Frame.java">
-<persistable path="/LOS_GAME/src/Game_Frame.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GTester.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/GTester.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/GTester.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AI.java" tooltip="LOS_GAME/src/AI.java">
-<persistable path="/LOS_GAME/src/AI.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Game.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Game.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/Game.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Game_Frame.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Game_Frame.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/Game_Frame.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Combat.java" tooltip="LOS_GAME/src/theLairOfShadowsGame/Combat.java">
+<persistable path="/LOS_GAME/src/theLairOfShadowsGame/Combat.java"/>
 </file>
 </mruList>
 </workbench>

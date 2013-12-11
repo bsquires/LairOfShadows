@@ -1,0 +1,44 @@
+You are a Mage
+
+An intelligent fighter, you prefer to
+strategize before attacking, assessing
+your opponents strengths and figuring
+out how best to counter them. You have
+trained under the village's shaman, who
+has taught you the basics of magic, turning
+the world itself into your weapon. But
+you decided on a different path, using your
+magics to defend yourself in battle and
+unload blasts of the arcane that would send
+any rational being running in the other
+direction. You prefer to stay as far from
+your opponents as possible, raining magic
+upon them before they get within striking
+range. Rather than use a crude implement
+of violence, you prefer your trusty
+wizard staff. This allows you to channel your
+power through it, striking directly with
+blasts of magic, or using it as a medium to
+summon your most powerful magics. Your combat
+prowess at close range is greatly lessened
+due to your lack of encumbering armor and
+low constitution. You may be able to use
+potent magic attacks, but you aren't quite as
+capable as taking a hit.
+
+Your special skill is Magic.
+This raw, flowing energy allows you to pull
+off feats of magic that haven't been seen
+since long ago.
+
+Fire Ball
+Calling out to the fluctuating streams of
+the Nether, the realm of pure magic, you 
+call to you a collosal pillar of flame,
+destroying anything in your path.
+
+Heal
+Imbuning yourself with magic of the land,
+using it to promote wellness, a sense of
+calm, and a huge burst of regeneration,
+healing you if you manage to get hit. 
